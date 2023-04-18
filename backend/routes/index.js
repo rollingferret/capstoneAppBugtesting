@@ -2,6 +2,11 @@
 const express = require("express");
 const router = express.Router();
 
+const apiRouter = require("./api");
+// Import this file into the routes/index.js file and connect it to the router there.
+
+router.use("/api", apiRouter);
+
 //// test route:
 // router.get("/hello/world", function (req, res) {
 //  res.cookie("XSRF-TOKEN", req.csrfToken());
@@ -17,5 +22,7 @@ router.get("/api/csrf/restore", (req, res) => {
  });
 });
 //This route should not be available in production, but it will not be exclusive to the production application until you implement the frontend of the application later. So for now, it will remain available to both the development and production environments.
+
+// ...
 
 module.exports = router;
