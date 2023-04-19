@@ -37,6 +37,7 @@ router.use("/users", usersRouter);
 
 router.use("/photos", photosRouter);
 
+//
 router.post("/test", (req, res) => {
  res.json({ requestBody: req.body });
 });
