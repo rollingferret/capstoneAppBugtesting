@@ -1,14 +1,17 @@
+// frontend/src/index.js
 import React from "react";
+
 import "./index.css";
+
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { ModalProvider, Modal } from "./context/Modal";
 import App from "./App";
-import configureStore from "./store";
-import * as sessionActions from "./store/session";
-import { restoreCSRF, csrfFetch } from "./store/csrf";
 
-//Create a variable to access your store and expose it to the window. It should not be exposed in production, be sure this is only set in development.
+import configureStore from "./store";
+import { restoreCSRF, csrfFetch } from "./store/csrf";
+import * as sessionActions from "./store/session";
 
 const store = configureStore();
 
@@ -19,25 +22,23 @@ if (process.env.NODE_ENV !== "production") {
  window.store = store;
  window.sessionActions = sessionActions;
 }
-// ...
 
-//Next, define a Root React functional component that returns the App component wrapped in Redux's Provider and React Router DOM's BrowserRouter provider components.
-
-// ...
+// Wrap the application with the Modal provider and render the Modal component
+// after the App component so that all the Modal content will be layered as
+// HTML elements on top of the all the other HTML elements:
 function Root() {
  return (
-  <Provider store={store}>
-   <BrowserRouter>
-    <App />
-   </BrowserRouter>
-  </Provider>
+  <ModalProvider>
+   <Provider store={store}>
+    <BrowserRouter>
+     <App />
+     <Modal />
+    </BrowserRouter>
+   </Provider>
+  </ModalProvider>
  );
 }
-//Make sure to pass in the key of store with the value of store to the Provider.
 
-//After defining the Root functional component, call ReactDOM.render function passing in the Root component and the HTML element with the id of "root".
-
-// ...
 ReactDOM.render(
  <React.StrictMode>
   <Root />
