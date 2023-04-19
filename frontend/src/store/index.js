@@ -1,10 +1,14 @@
 // frontend/src/store/index.js
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import sessionReducer from "./session";
 
 //Create a rootReducer that calls combineReducers and pass in an empty object for now.
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+ session: sessionReducer,
+});
+// ...
 
 // In development, the logger middleware and Redux dev tools compose enhancer as well. To use these tools, create a logger variable that uses the default export of redux-logger. Then, grab the Redux dev tools compose enhancer with window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ and store it in a variable called composeEnhancers. You can use an or || to keep the Redux's original compose as a fallback. Then set the enhancer variable to the return of the composeEnhancers function passing in applyMiddleware invoked with thunk then logger.
 

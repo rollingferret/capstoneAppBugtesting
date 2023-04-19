@@ -1,16 +1,11 @@
 import React from "react";
-
 import "./index.css";
-
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-
 import configureStore from "./store";
-
-// frontend/src/index.js
-// ... other imports
+import * as sessionActions from "./store/session";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 
 //Create a variable to access your store and expose it to the window. It should not be exposed in production, be sure this is only set in development.
@@ -22,7 +17,9 @@ if (process.env.NODE_ENV !== "production") {
 
  window.csrfFetch = csrfFetch;
  window.store = store;
+ window.sessionActions = sessionActions;
 }
+// ...
 
 //Next, define a Root React functional component that returns the App component wrapped in Redux's Provider and React Router DOM's BrowserRouter provider components.
 
