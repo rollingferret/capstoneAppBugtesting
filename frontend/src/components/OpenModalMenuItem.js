@@ -3,6 +3,7 @@ import React from "react";
 import { useModal } from "../context/Modal";
 
 function OpenModalMenuItem({
+ itemClassName, //styling for menu item
  modalComponent, // component to render inside the modal
  itemText, // text of the menu item that opens the modal
  onItemClick, // optional: callback function that will be called once the menu item that opens the modal is clicked
@@ -16,7 +17,11 @@ function OpenModalMenuItem({
   if (onItemClick) onItemClick();
  };
 
- return <li onClick={onClick}>{itemText}</li>;
+ return (
+  <div className={itemClassName} onClick={onClick}>
+   {itemText}
+  </div>
+ );
 }
 
 export default OpenModalMenuItem;

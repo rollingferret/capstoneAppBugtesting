@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import OpenModalMenuItem from "../OpenModalMenuItem";
@@ -6,6 +7,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 function ProfileButton({ user }) {
+ const history = useHistory();
  const dispatch = useDispatch();
  const [showMenu, setShowMenu] = useState(false);
  const ulRef = useRef();
@@ -34,6 +36,7 @@ function ProfileButton({ user }) {
  const logout = (e) => {
   e.preventDefault();
   dispatch(sessionActions.logout());
+
   closeMenu();
  };
 
@@ -41,36 +44,40 @@ function ProfileButton({ user }) {
 
  return (
   <>
-   <button onClick={openMenu}>
+   <button className="profile-button" onClick={openMenu}>
     <i className="fas fa-user-circle" />
    </button>
-   <ul className={ulClassName} ref={ulRef}>
+   <div className={ulClassName} ref={ulRef}>
     {user ? (
      <>
-      <li>{user.username}</li>
-      <li>
+      <div>{user.username}</div>
+      <div>
        {user.firstname} {user.lastname}
-      </li>
-      <li>{user.email}</li>
-      <li>
-       <button onClick={logout}>Log Out</button>
-      </li>
+      </div>
+      <div>{user.email}</div>
+      <div>
+       <button className="profile-btn-log-out-btn" onClick={logout}>
+        Log Out
+       </button>
+      </div>
      </>
     ) : (
      <>
       <OpenModalMenuItem
        itemText="Log In"
+       itemClassName="profile-login-OpenModalMenuItem"
        onItemClick={closeMenu}
        modalComponent={<LoginFormModal />}
       />
       <OpenModalMenuItem
        itemText="Sign Up"
+       itemClassName="profile-Sign-Up-OpenModalMenuItem"
        onItemClick={closeMenu}
        modalComponent={<SignupFormModal />}
       />
      </>
     )}
-   </ul>
+   </div>
   </>
  );
 }

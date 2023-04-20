@@ -1,5 +1,14 @@
 /* TODO Add site wide styles */
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 16pt;
+}
 
+body {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+}
 
 /* ************** */
 /*   Modal        */
@@ -30,7 +39,126 @@
   background-color: white;
 }
 
+/* ************** */
+/* whole-screen */
+/* ************** */
+.whole-screen {
+  width: 100vw;
+}
+
+
+/* ************** */
+/* navigation-nav */
+/* ************** */
+.navigation-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+.navigation-nav-dropdown-parent {
+  position: relative;
+}
+
+.profile-dropdown {
+  width: 180px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  right: 0;
+  top: calc(100% + .75rem);
+  gap: 10px;
+  background-color: white;
+  padding-bottom: .15rem;
+  border-radius: 9px;
+  box-shadow: 0 2px 5px 0 gray;
+  z-index: 1;
+}
 
 .hidden {
   display: none;
 }
+
+/* ************** */
+/*       form     */
+/* ************** */
+
+label,
+input {
+  display: block;
+  width: 100%;
+  margin: 0.3rem 0;
+}
+
+input {
+  background-color: #e8f0fe;
+  border-radius: 5px;
+}
+
+
+/* ************** */
+/*  signup-login  */
+/* ************** */
+
+.signup-login-background {
+  width: 100%;
+  height: 100vh;
+  background-image: url("https://external-preview.redd.it/8xw4wtqaWdJR1QpujOk0iSegWqcd3tZMr9rPwo7eF5s.jpg?auto=webp&v=enabled&s=5044685b7503a8bd39395e8e31faef380ebb2004");
+  /* background-size: cover; */
+
+  /* background-color: bisque; */
+  display: flex;
+  justify-content: center;
+
+}
+
+.signup-login-form-container {
+  width: 30%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  background-color: white;
+  border-radius: 9px;
+  padding: 20px;
+}
+
+/* *************** */
+/*  photo-current  */
+/* *************** */
+
+.photo-current-top-cover-img {
+
+  width: 100%;
+  height: 30vh;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_5rEynEBiBwkbtMrgqntteiq0KPey-Kerxw&usqp=CAUom/7925/32740076118_31632cca94_z.jpg");
+  background-size: cover;
+}
+
+.photo-current-mid-nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 80px;
+  color: #888;
+  border-bottom: 1px solid #ddd;
+}
+
+.photo-current-mid-nav-item {
+  margin: 0 20px;
+}
+
+.photo-current-photolist-container {
+  width: 100%;
+  display: flex;
+  padding: 50px 80px;
+}
+
+/* .photo-tile-box {
+  height: 250px;
+} */
