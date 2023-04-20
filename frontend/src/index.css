@@ -159,6 +159,11 @@ input {
   padding: 50px 80px;
 }
 
+.login-demo-user {
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
 /* .photo-tile-box {
   height: 250px;
 } */
