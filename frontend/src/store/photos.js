@@ -26,8 +26,20 @@ export const ThunkLoadAllCurrentPhotos = () => async (dispatch) => {
  dispatch(loadAllCurrentPhotos(photos));
 };
 
-// export const ThunkCreateAPhoto = () => async (dispatch) => {
-//  const res = await csrfFetch("/api/photos/");
+// export const ThunkCreateAPhoto = (data) => async (dispatch) => {
+//  const res = await csrfFetch("/api/photos/", {
+//   method: "POST",
+//   headers: { "Content-Type": "application/json" },
+//   body: JSON.stringify(data),
+//  });
+
+//  if (res.ok) {
+//   photo = await res.json();
+//   dispatch(createAPhoto(photo));
+//   return;
+//  } else {
+//   return res;
+//  }
 // };
 
 const initialState = { allPhotos: {}, singlePhoto: {} };
@@ -38,14 +50,24 @@ const photosReducer = (state = initialState, action) => {
  switch (action.type) {
   case LOAD_ALL_CURRENT_PHOTOS:
    newState = {
+    ...state,
     allPhotos: { ...state.allPhotos },
     singlePhoto: { ...state.singlePhoto },
    };
-   //newState = { ...state };
    action.photos.forEach((photo) => {
     newState.allPhotos[photo.id] = photo;
    });
    return newState;
+
+  case CREATE_A_PHOTO:
+   newState = {
+    ...state,
+    allPhotos: { ...state.allPhotos },
+    singlePhoto: { ...state.singlePhoto },
+   };
+   newState.allPhotos[action.photo.id] = action.photo;
+   return newState;
+
   default:
    return state;
  }

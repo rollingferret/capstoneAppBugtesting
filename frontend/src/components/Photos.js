@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PhotoList from "./PhotoList";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkLoadAllCurrentPhotos } from "../store/photos";
@@ -16,7 +16,7 @@ function Photos() {
   dispatch(ThunkLoadAllCurrentPhotos());
  }, [dispatch]);
  console.log("step 4");
- //if (!return_photos) return null;
+ if (!return_photos) return null;
  return (
   <>
    <div className="photo-current-top-cover-img">This is Photo </div>
@@ -25,6 +25,11 @@ function Photos() {
     <div className="photo-current-mid-nav-item ">Photostream</div>
     <div className="photo-current-mid-nav-item ">Alums</div>
     <div className="photo-current-mid-nav-item ">Faves</div>
+   </div>
+   <div className="photo-current-create-photo-row ">
+    <div className="photo-current-new-photo ">
+     <></>
+    </div>
    </div>
    <div className="photo-current-photolist-container">
     {!!photos && <PhotoList photos={photos} />}

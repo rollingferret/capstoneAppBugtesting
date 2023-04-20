@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+//import { ThunkLoadAllCurrentPhotos } from "../store/photos";
 
 function LoginFormPage() {
  const dispatch = useDispatch();
@@ -18,6 +19,18 @@ function LoginFormPage() {
   e.preventDefault();
   setErrors({});
   return dispatch(sessionActions.login({ credential, password }))
+   .then(history.push("/photos/current"))
+   .catch(async (res) => {
+    const data = await res.json();
+    if (data && data.errors) setErrors(data.errors);
+   });
+ };
+
+ const demoUser = () => {
+  setErrors({});
+  return dispatch(
+   sessionActions.login({ credential: "demo@user.io", password: "password" })
+  )
    .then(history.push("/photos/current"))
    .catch(async (res) => {
     const data = await res.json();
@@ -50,6 +63,7 @@ function LoginFormPage() {
     {errors.credential && <p>{errors.credential}</p>}
     <button type="submit">Log In</button>
    </form>
+   <button onClick={() => demoUser()}>demoUser</button>
   </>
  );
 }
