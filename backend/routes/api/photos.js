@@ -20,15 +20,19 @@ const validateAddPhoto = [
 // ...
 
 //GET ALL Current user's PHOTO
-router.get("/", requireAuth, async (req, res, next) => {
+router.get("/current", requireAuth, async (req, res, next) => {
  const currentUser = req.user;
  let where = {
   ownerId: currentUser.id,
  };
  console.log("currentUser.id: ", currentUser.id);
- allPhotos = await Photo.findAll({ where });
- console.log("allPhotos: ", allPhotos);
- return res.json(allPhotos);
+ const allPhotos = await Photo.findAll({ where });
+ let photos = [];
+ allPhotos.forEach((photo) => {
+  photos.push(photo.toJSON());
+ });
+ console.log("********photos: ", photos);
+ return res.json(photos);
 });
 
 //Get details of a photo from an id
