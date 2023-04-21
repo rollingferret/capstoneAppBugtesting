@@ -40,7 +40,7 @@ router.get("/:photoId", requireAuth, async (req, res, next) => {
  const { photoId } = req.params;
 
  //console.log("photoId: ", photoId);
- photo = await Photo.findByPk(parseInt(photoId));
+ const photo = await Photo.findByPk(parseInt(photoId));
  //console.log("photo: ", photo);
  return res.json(photo);
 });
