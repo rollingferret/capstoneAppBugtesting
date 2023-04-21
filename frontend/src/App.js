@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Photos from "./components/Photos";
+import PhotoDetail from "./components/PhotoDetail";
 
 function App() {
  const dispatch = useDispatch();
@@ -21,6 +22,11 @@ function App() {
     {isLoaded && (
      <Route path="/photos/current">
       <Photos />
+     </Route>
+    )}
+    {isLoaded && (
+     <Route path="/photos/:photoId">
+      <PhotoDetail />
      </Route>
     )}
    </Switch>

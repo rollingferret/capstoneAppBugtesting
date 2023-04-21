@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     onDelete: "CASCADE",
     hooks: true,
    });
+
+   User.belongsToMany(models.Photo, {
+    through: models.Comment,
+    foreignKey: "userId",
+    otherKey: "photoId",
+   });
   }
  }
 

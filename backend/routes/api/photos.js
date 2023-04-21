@@ -5,7 +5,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const express = require("express");
 
 const { requireAuth } = require("../../utils/auth");
-const { Photo } = require("../../db/models");
+const { Photo, Comment } = require("../../db/models");
 
 const router = express.Router();
 
@@ -74,9 +74,9 @@ router.put(
   //console.log("ownerId: ", ownerId);
   const { photoId } = req.params;
   const { title, url } = req.body;
-  console.log({ title, url });
+  //console.log({ title, url });
   const thePhoto = await Photo.findByPk(photoId);
-  console.log("thePhoto: ", thePhoto);
+  //console.log("thePhoto: ", thePhoto);
 
   thePhoto.set({
    title,
@@ -90,7 +90,8 @@ router.put(
  }
 );
 
-router.delete("/:photoId", async (req, res, next) => {
+//delete
+router.delete("/:photoId", requireAuth, async (req, res, next) => {
  const { photoId } = req.params;
 
  //console.log("photoId: ", photoId);
@@ -111,6 +112,41 @@ router.delete("/:photoId", async (req, res, next) => {
   message: "Successfully deleted",
   statusCode: 200,
  });
+});
+
+//*******Get all Reviews by a photo
+router.get("/:photoId/comments", requireAuth, async (req, res, next) => {
+ let { photoId } = req.params;
+ photoId = parseInt(photoId);
+ //const currentUser = req.user;
+ //const userId = parseInt(currentUser.id);
+
+ let where = {
+  photoId,
+ };
+
+ const comments = await Comment.findAll({ where });
+ res.status(201);
+ return res.json(comments);
+});
+
+//*******Create a Review for a photo
+router.post("/:photoId/comments", requireAuth, async (req, res, next) => {
+ let { photoId } = req.params;
+ photoId = parseInt(photoId);
+ const currentUser = req.user;
+ const userId = parseInt(currentUser.id);
+
+ const { comment } = req.body;
+
+ const newComment = await Comment.create({
+  comment,
+  photoId,
+  userId,
+ });
+
+ res.status(201);
+ return res.json(newComment);
 });
 
 //Error handler to log errors

@@ -167,3 +167,21 @@ input {
 /* .photo-tile-box {
   height: 250px;
 } */
+
+/* ************** */
+/*  PhotoDetail   */
+/* ************** */
+
+.PhotoDetail-show-backgroud-container {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+}
+
+.PhotoDetail-show-container {
+  width: 560px;
+  height: 360px;
+  background-size: cover;
+}

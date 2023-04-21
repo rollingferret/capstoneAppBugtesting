@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
@@ -10,8 +10,6 @@ function Navigation({ isLoaded }) {
  const [formType, setFormType] = useState("login");
  const sessionUser = useSelector((state) => state.session.user);
 
- if (sessionUser) return <Redirect to="/photos/current" />;
-
  let sessionLink1;
  if (sessionUser) {
   sessionLink1 = (
@@ -20,23 +18,6 @@ function Navigation({ isLoaded }) {
    </div>
   );
  }
-
- let isSignup = !sessionUser & (formType === "signup");
- console.log("isSignup", isSignup);
- //  else {
- //   if (formType === "login")
- //    sessionLink2 = <LoginFormPage setFormType={setFormType} />;
- //   else sessionLink2 = <SignupFormPage setFormType={setFormType} />;
-
- // sessionLinks = (
- //  <div className="navigation-nav-dropdown-parent">
- //   <OpenModalButton buttonText="Log In" modalComponent={<LoginFormModal />} />
- //   <OpenModalButton
- //    buttonText="Sign Up"
- //    modalComponent={<SignupFormModal />}
- //   />
- //  </div>
- // );
 
  return (
   <div className="whole-screen">
@@ -56,7 +37,14 @@ function Navigation({ isLoaded }) {
       Imagecfr
      </NavLink>
     </div>
-    {isLoaded && sessionLink1}
+    {isLoaded && (
+     <>
+      <div className="navigation-nav-dropdown-parent">
+       <ProfileButton user={sessionUser} />
+      </div>
+      <Redirect to="/photos/current" />
+     </>
+    )}
    </div>
    {!sessionUser && formType === "signup" && (
     <div className="signup-login-background">
