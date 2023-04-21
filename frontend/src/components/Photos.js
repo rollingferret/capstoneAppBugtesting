@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PhotoList from "./PhotoList";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkLoadAllCurrentPhotos } from "../store/photos";
+import AddEditPhotoFormModal from "./AddEditPhotoFormModal";
+import OpenModalButton from "./OpenModalButton";
 
 function Photos() {
  console.log("step 1");
@@ -28,7 +30,11 @@ function Photos() {
    </div>
    <div className="photo-current-create-photo-row ">
     <div className="photo-current-new-photo ">
-     <></>
+     <OpenModalButton
+      btnClassName="OpenModal-btn"
+      buttonText="Add a photo"
+      modalComponent={<AddEditPhotoFormModal formType={"Add"} photo={null} />}
+     />
     </div>
    </div>
    <div className="photo-current-photolist-container">

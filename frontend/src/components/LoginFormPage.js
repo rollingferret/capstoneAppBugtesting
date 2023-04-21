@@ -19,7 +19,7 @@ function LoginFormPage() {
   e.preventDefault();
   setErrors({});
   return dispatch(sessionActions.login({ credential, password }))
-   .then(history.push("/photos/current"))
+   .then(() => history.push("/photos/current"))
    .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
@@ -31,7 +31,7 @@ function LoginFormPage() {
   return dispatch(
    sessionActions.login({ credential: "demo@user.io", password: "password" })
   )
-   .then(history.push("/photos/current"))
+   .then(() => history.push("/photos/current"))
    .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);

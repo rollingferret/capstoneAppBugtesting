@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
@@ -12,6 +9,8 @@ import SignupFormPage from "../SignupFormPage";
 function Navigation({ isLoaded }) {
  const [formType, setFormType] = useState("login");
  const sessionUser = useSelector((state) => state.session.user);
+
+ if (sessionUser) return <Redirect to="/photos/current" />;
 
  let sessionLink1;
  if (sessionUser) {
