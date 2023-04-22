@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_ALL_COMMENTS_BY_PHOTO = "comments/load_all_comments_by_photo";
 const LOAD_ALL_COMMENTS_BY_CURRENT = "comments/load_all_comments_by_current";
-const Update_A_COMMENT = "comments/update_a_comment";
+const ADD_UPDATE_A_COMMENT = "comments/add_update_a_comment";
 const DELETE_A_COMMENT = "comments/delete_a_comment";
 
 export const loadAllCommentByPhoto = (comments) => {
@@ -17,9 +17,9 @@ export const loadAllCommentByCurrent = (comments) => {
   comments,
  };
 };
-export const updateAComment = (comment) => {
+export const addUpdateAComment = (comment) => {
  return {
-  type: Update_A_COMMENT,
+  type: ADD_UPDATE_A_COMMENT,
   comment,
  };
 };
@@ -56,11 +56,6 @@ export const ThunkLoadAllCommentByCurrent = () => async (dispatch) => {
 
 //ThunkUpdateAComment
 export const ThunkUpdateAComment = (data, commentId) => async (dispatch) => {
- //  console.log(
- //   "first line ThunkLoadAllCommentByCurrent data, commentId",
- //   data,
- //   commentId
- //  );
  const res = await csrfFetch(`/api/comments/${commentId}`, {
   method: "PUT",
   headers: { "Content-Type": "application/json" },
@@ -69,7 +64,22 @@ export const ThunkUpdateAComment = (data, commentId) => async (dispatch) => {
 
  if (res.ok) {
   const comment = await res.json();
-  dispatch(updateAComment(comment));
+  dispatch(addUpdateAComment(comment));
+ }
+ return res;
+};
+
+//ThunkAddAComment
+export const ThunkAddAComment = (data, photoId) => async (dispatch) => {
+ const res = await csrfFetch(`/api/photos/${photoId}/comments`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data),
+ });
+
+ if (res.ok) {
+  const comment = await res.json();
+  dispatch(addUpdateAComment(comment));
  }
  return res;
 };
@@ -110,7 +120,7 @@ const commentsReducer = (state = initialState, action) => {
    });
    return newState;
 
-  case Update_A_COMMENT:
+  case ADD_UPDATE_A_COMMENT:
    newState = {
     ...state,
     commentsByPhoto: { ...state.commentsByPhoto },

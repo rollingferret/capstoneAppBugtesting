@@ -144,7 +144,7 @@ router.get("/:photoId/comments", requireAuth, async (req, res, next) => {
  return res.json(comments);
 });
 
-//*******Create a Review for a photo
+//*******Create a comment for a photo
 router.post("/:photoId/comments", requireAuth, async (req, res, next) => {
  let { photoId } = req.params;
  photoId = parseInt(photoId);

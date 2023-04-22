@@ -237,3 +237,21 @@ input {
 .CommentCurrent-comment-box {
   padding: 30px;
 }
+
+.phototile {
+  height: 250px;
+  width: 250px;
+  box-shadow: 0 2px 5px 0 gray;
+}
+
+.OpenModal-btn-gallery {
+  border: none;
+  border-style: none;
+  background-color: white;
+}
+
+.phototile-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

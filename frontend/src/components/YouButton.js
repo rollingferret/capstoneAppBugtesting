@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useHistory, NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import * as sessionActions from "../store/session";
+import { NavLink } from "react-router-dom";
 
 function YouButton({ user }) {
- const history = useHistory();
- const dispatch = useDispatch();
  const [showMenu, setShowMenu] = useState(false);
  const ulRef = useRef();
 
@@ -41,6 +37,19 @@ function YouButton({ user }) {
    <div className={ulClassName} ref={ulRef}>
     {/* {user ? ( */}
     <>
+     <div>
+      <NavLink
+       style={{
+        alignSelf: "start",
+        display: "block",
+        textDecoration: "none",
+       }}
+       to="/photos/gallery"
+      >
+       {" "}
+       Gallery
+      </NavLink>
+     </div>
      <div>
       <NavLink
        style={{

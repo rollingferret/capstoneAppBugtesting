@@ -6,7 +6,7 @@ import AddEditPhotoFormModal from "./AddEditPhotoFormModal";
 import OpenModalButton from "./OpenModalButton";
 import MidNav from "./MidNav";
 
-function Photos() {
+function Photos({ user }) {
  console.log("step 1");
  const dispatch = useDispatch();
  const return_photos = useSelector((state) => state.photos.allcurrent);
@@ -34,7 +34,7 @@ function Photos() {
     </div>
    </div>
    <div className="photo-current-photolist-container">
-    {!!photos && <PhotoList photos={photos} />}
+    {!!photos && <PhotoList photos={photos} user={user} type="photo" />}
    </div>
   </>
  );

@@ -4,9 +4,10 @@ import { useModal } from "../context/Modal";
 import {
  ThunkLoadAllCommentByCurrent,
  ThunkUpdateAComment,
+ ThunkAddAComment,
 } from "../store/comments";
 
-function AddEditCommentFormModal({ formType, comment }) {
+function AddEditCommentFormModal({ formType, comment, photoId }) {
  const dispatch = useDispatch();
  const [comment_, setComment_] = useState("");
  const [errors, setErrors] = useState({});
@@ -31,38 +32,41 @@ function AddEditCommentFormModal({ formType, comment }) {
 
  const handleSubmit = (e) => {
   e.preventDefault();
-  // setErrors({});
-  // if (formType === "Add") {
-  //  return dispatch(
-  //   ThunkCreateAPhoto({
-  //    title,
-  //    url,
-  //   })
-  //  )
-  //   .then(closeModal)
-  //   .catch(async (res) => {
-  //    const data = await res.json();
-  //    if (data && data.errors) {
-  //     setErrors(data.errors);
-  //    }
-  //   });
-  // } else {
-  return dispatch(
-   ThunkUpdateAComment(
-    {
-     comment: comment_,
-    },
-    theComment.id
+  setErrors({});
+  if (formType === "Add") {
+   return dispatch(
+    ThunkAddAComment(
+     {
+      comment: comment_,
+     },
+     photoId
+    )
    )
-  )
-   .then(closeModal)
-   .catch(async (res) => {
-    const data = await res.json();
-    if (data && data.errors) {
-     setErrors(data.errors);
-    }
-   });
-  // }
+    .then(closeModal)
+    .catch(async (res) => {
+     const data = await res.json();
+     if (data && data.errors) {
+      setErrors(data.errors);
+     }
+    });
+  }
+  if (formType === "Edit") {
+   return dispatch(
+    ThunkUpdateAComment(
+     {
+      comment: comment_,
+     },
+     theComment.id
+    )
+   )
+    .then(closeModal)
+    .catch(async (res) => {
+     const data = await res.json();
+     if (data && data.errors) {
+      setErrors(data.errors);
+     }
+    });
+  }
  };
 
  return (
@@ -73,16 +77,6 @@ function AddEditCommentFormModal({ formType, comment }) {
     <h1>Update info about a Comment</h1>
    )}
    <form onSubmit={handleSubmit}>
-    {/* <label>
-     title
-     <input
-      type="text"
-      value={title}
-      onChange={(e) => setTitle(e.target.value)}
-      required
-     />
-    </label> 
-    {errors.title && <p>{errors.title}</p>}*/}
     <label>
      Comment
      <input
