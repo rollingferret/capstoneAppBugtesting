@@ -30,7 +30,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
  return res.json(comments);
 });
 
-//*******Update a current user's Review
+//*******Update a current user's comment
 router.put(
  "/:commentId",
  requireAuth,
@@ -71,7 +71,7 @@ router.put(
  }
 );
 
-//Delete a current user's Review
+//Delete a current user's comment
 router.delete("/:commentId", requireAuth, async (req, res, next) => {
  let { commentId } = req.params;
  commentId = parseInt(commentId);

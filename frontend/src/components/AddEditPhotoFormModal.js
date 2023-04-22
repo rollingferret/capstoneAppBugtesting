@@ -14,7 +14,7 @@ function AddEditPhotoFormModal({ formType, photo }) {
  const [errors, setErrors] = useState({});
  const { closeModal } = useModal();
 
- const return_photos = useSelector((state) => state.photos.allPhotos);
+ const return_photos = useSelector((state) => state.photos.allcurrent);
  useEffect(() => {
   if (formType === "Edit") {
    dispatch(ThunkLoadAllCurrentPhotos());
@@ -24,9 +24,9 @@ function AddEditPhotoFormModal({ formType, photo }) {
  if (formType === "Edit" && photo) thePhoto = return_photos[photo.id];
 
  useEffect(() => {
-  if (formType === "Edit") {
-   setTitle(thePhoto.title);
-   setUrl(thePhoto.url);
+  if (formType === "Edit" && thePhoto !== null) {
+   setTitle(thePhoto?.title);
+   setUrl(thePhoto?.url);
   }
  }, [formType, thePhoto]);
 

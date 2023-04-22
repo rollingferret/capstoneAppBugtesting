@@ -36,17 +36,18 @@ function CommentCurrent() {
   comments
  );
 
- if (comments.length !== 0 && return_photos !== null)
+ if (comments.length === 0 || return_photos === null) return <div>Loading</div>;
+ else
   return (
    <>
     <div>Manage Your Comments</div>
     <div>
      {comments?.map((comment) => {
       return (
-       <div className="CommentCurrent-comment-container">
+       <div key={comment?.id} className="CommentCurrent-comment-container">
         <div
          style={{
-          backgroundImage: `url(${comment.photo.url})`,
+          backgroundImage: `url(${comment?.photo.url})`,
           width: "250px",
           height: "200px",
           backgroundSize: "cover",

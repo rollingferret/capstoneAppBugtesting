@@ -84,7 +84,7 @@ export const ThunkUpdateAPhoto = (data, photoId) => async (dispatch) => {
   return res;
  }
 };
-
+//thunkDeleteAPhoto
 export const thunkDeleteAPhoto = (photoId) => async (dispatch) => {
  const res = await csrfFetch(`/api/photos/${photoId}`, {
   method: "DELETE",
@@ -124,7 +124,7 @@ const photosReducer = (state = initialState, action) => {
    newState = {
     ...state,
     allPhotos: { ...state.allPhotos },
-    allcurrent: { ...state.allPhotos },
+    allcurrent: { ...state.allcurrent },
    };
    newState.allcurrent[action.photo.id] = action.photo;
    return newState;
@@ -133,7 +133,7 @@ const photosReducer = (state = initialState, action) => {
    newState = {
     ...state,
     allPhotos: { ...state.allPhotos },
-    allcurrent: { ...state.allPhotos },
+    allcurrent: { ...state.allcurrent },
    };
    delete newState.allcurrent[action.id];
    return newState;

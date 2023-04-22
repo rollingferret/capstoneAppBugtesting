@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../context/Modal";
-import { thunkDeleteAPhoto } from "../store/photos";
+import { ThunkDeleteAComment } from "../store/comments";
 //import "./SignupForm.css";
 
 function DeleteCommentFormModal({ comment }) {
@@ -12,14 +12,14 @@ function DeleteCommentFormModal({ comment }) {
 
  const handleDelete = () => {
   setErrors({});
-  // return dispatch(thunkDeleteAPhoto(photo.id))
-  //  .then(closeModal)
-  //  .catch(async (res) => {
-  //   const data = await res.json();
-  //   if (data && data.errors) {
-  //    setErrors(data.errors);
-  //   }
-  //  });
+  return dispatch(ThunkDeleteAComment(comment.id))
+   .then(closeModal)
+   .catch(async (res) => {
+    const data = await res.json();
+    if (data && data.errors) {
+     setErrors(data.errors);
+    }
+   });
  };
 
  return (
@@ -28,7 +28,7 @@ function DeleteCommentFormModal({ comment }) {
     <h1>Confirm Delete</h1>
    </div>
    <div>
-    <p>Are you sure you want to remove this photo?</p>
+    <p>Are you sure you want to remove this comment?</p>
    </div>
 
    <div>
@@ -43,11 +43,11 @@ function DeleteCommentFormModal({ comment }) {
      handleDelete();
     }}
    >
-    Yes (Delete Photo)
+    Yes (Delete Comment)
    </button>
 
    <button className="cancel-delete-photo-button" onClick={() => closeModal()}>
-    No (Keep Photo)
+    No (Keep Comment)
    </button>
   </div>
  );
