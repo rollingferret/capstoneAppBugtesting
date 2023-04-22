@@ -5,6 +5,7 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
+import YouButton from "../YouButton";
 
 function Navigation({ isLoaded }) {
  const [formType, setFormType] = useState("login");
@@ -36,6 +37,7 @@ function Navigation({ isLoaded }) {
      >
       Imagecfr
      </NavLink>
+     <YouButton />
     </div>
     {isLoaded && (
      <>

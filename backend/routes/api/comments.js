@@ -15,14 +15,22 @@ const validateAddComment = [
  handleValidationErrors,
 ];
 
-//Get details of a photo from an id
-router.get("/:commentId", requireAuth, async (req, res, next) => {
- const { commentId } = req.params;
+//Get all current user's comments
+router.get("/current", requireAuth, async (req, res, next) => {
+ const currentUser = req.user;
+ let where = {
+  userId: currentUser.id,
+ };
+ const allComments = await Comment.findAll({ where });
+ let comments = [];
+ allComments.forEach((comment) => {
+  comments.push(comment.toJSON());
+ });
 
- return res.json(commentId);
+ return res.json(comments);
 });
 
-//*******Update a Review
+//*******Update a current user's Review
 router.put(
  "/:commentId",
  requireAuth,
@@ -63,7 +71,7 @@ router.put(
  }
 );
 
-//Delete a comment
+//Delete a current user's Review
 router.delete("/:commentId", requireAuth, async (req, res, next) => {
  let { commentId } = req.params;
  commentId = parseInt(commentId);

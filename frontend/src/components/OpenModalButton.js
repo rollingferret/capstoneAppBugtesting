@@ -3,7 +3,7 @@ import React from "react";
 import { useModal } from "../context/Modal";
 
 function OpenModalButton({
- btnClassName, // styling for the button of the modal
+ btnclassname, // styling for the button of the modal
  modalComponent, // component to render inside the modal
  buttonText, // text of the button that opens the modal
  onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
@@ -18,7 +18,7 @@ function OpenModalButton({
  };
 
  return (
-  <button btnClassName={btnClassName} onClick={onClick}>
+  <button btnclassname={btnclassname} onClick={onClick}>
    {buttonText}
   </button>
  );

@@ -3,6 +3,8 @@ import { csrfFetch } from "./csrf";
 //
 const LOAD_ALL_CURRENT_PHOTOS = "photos/LOAD_ALL_CURRENT_PHOTOS";
 //
+const LOAD_ALL_PHOTOS = "photos/LOAD_ALL_PHOTOS";
+
 const CREATE_UPDATE_A_PHOTO = "photos/CREATE_UPDATE_A_PHOTO";
 
 const DELETE_A_PHOTO = "photos/DELETE_A_PHOTO";
@@ -10,6 +12,13 @@ const DELETE_A_PHOTO = "photos/DELETE_A_PHOTO";
 export const loadAllCurrentPhotos = (photos) => {
  return {
   type: LOAD_ALL_CURRENT_PHOTOS,
+  photos,
+ };
+};
+
+export const loadAllPhotos = (photos) => {
+ return {
+  type: LOAD_ALL_PHOTOS,
   photos,
  };
 };
@@ -33,6 +42,14 @@ export const ThunkLoadAllCurrentPhotos = () => async (dispatch) => {
  const photos = await response.json();
  console.log("ThunkLoadAllCurrentPhotos photos: ", photos);
  dispatch(loadAllCurrentPhotos(photos));
+ return response;
+};
+
+export const ThunkLoadAllPhotos = () => async (dispatch) => {
+ const response = await csrfFetch("/api/photos");
+ const photos = await response.json();
+ console.log("ThunkLoadAllCurrentPhotos photos: ", photos);
+ dispatch(loadAllPhotos(photos));
  return response;
 };
 
@@ -76,7 +93,7 @@ export const thunkDeleteAPhoto = (photoId) => async (dispatch) => {
  return res;
 };
 
-const initialState = { allPhotos: {} };
+const initialState = { allPhotos: {}, allcurrent: {} };
 
 const photosReducer = (state = initialState, action) => {
  console.log("before photosReducer action: ", action);
@@ -86,6 +103,17 @@ const photosReducer = (state = initialState, action) => {
    newState = {
     ...state,
     allPhotos: { ...state.allPhotos },
+    allcurrent: { ...state.allcurrent },
+   };
+   action.photos.forEach((photo) => {
+    newState.allcurrent[photo.id] = photo;
+   });
+   return newState;
+  case LOAD_ALL_PHOTOS:
+   newState = {
+    ...state,
+    allPhotos: { ...state.allPhotos },
+    allcurrent: { ...state.allcurrent },
    };
    action.photos.forEach((photo) => {
     newState.allPhotos[photo.id] = photo;
@@ -96,16 +124,18 @@ const photosReducer = (state = initialState, action) => {
    newState = {
     ...state,
     allPhotos: { ...state.allPhotos },
+    allcurrent: { ...state.allPhotos },
    };
-   newState.allPhotos[action.photo.id] = action.photo;
+   newState.allcurrent[action.photo.id] = action.photo;
    return newState;
 
   case DELETE_A_PHOTO:
    newState = {
     ...state,
     allPhotos: { ...state.allPhotos },
+    allcurrent: { ...state.allPhotos },
    };
-   delete newState.allPhotos[action.id];
+   delete newState.allcurrent[action.id];
    return newState;
 
   default:

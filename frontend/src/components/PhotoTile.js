@@ -20,12 +20,12 @@ function PhotoTile({ photo }) {
     alt="imported by author"
    /> */}
     <OpenModalButton
-     btnClassName="OpenModal-btn"
+     btnclassname="OpenModal-btn"
      buttonText="Update a photo"
      modalComponent={<AddEditPhotoFormModal formType={"Edit"} photo={photo} />}
     />
     <OpenModalButton
-     btnClassName="OpenModal-btn"
+     btnclassname="OpenModal-btn"
      buttonText="Delete a photo"
      modalComponent={<DeletePhotoFormModal photo={photo} />}
     />

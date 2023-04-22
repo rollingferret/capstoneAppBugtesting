@@ -5,7 +5,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const express = require("express");
 
 const { requireAuth } = require("../../utils/auth");
-const { Photo, Comment } = require("../../db/models");
+const { Photo, Comment, User } = require("../../db/models");
 
 const router = express.Router();
 
@@ -17,7 +17,16 @@ const validateAddPhoto = [
  handleValidationErrors,
 ];
 
-// ...
+//GET PHOTO
+router.get("/", async (req, res, next) => {
+ const allPhotos = await Photo.findAll();
+ let photos = [];
+ allPhotos.forEach((photo) => {
+  photos.push(photo.toJSON());
+ });
+ console.log("********photos: ", photos);
+ return res.json(photos);
+});
 
 //GET ALL Current user's PHOTO
 router.get("/current", requireAuth, async (req, res, next) => {
@@ -118,14 +127,19 @@ router.delete("/:photoId", requireAuth, async (req, res, next) => {
 router.get("/:photoId/comments", requireAuth, async (req, res, next) => {
  let { photoId } = req.params;
  photoId = parseInt(photoId);
- //const currentUser = req.user;
- //const userId = parseInt(currentUser.id);
 
  let where = {
   photoId,
  };
 
- const comments = await Comment.findAll({ where });
+ const comments = await Comment.findAll({
+  where,
+  include: [{ model: User, attibutes: ["firstname", "lastname"] }],
+  raw: true,
+ });
+
+ console.log("!!!-------      comments: ", comments);
+
  res.status(201);
  return res.json(comments);
 });

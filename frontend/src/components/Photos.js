@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { ThunkLoadAllCurrentPhotos } from "../store/photos";
 import AddEditPhotoFormModal from "./AddEditPhotoFormModal";
 import OpenModalButton from "./OpenModalButton";
+import MidNav from "./MidNav";
 
 function Photos() {
  console.log("step 1");
  const dispatch = useDispatch();
- const return_photos = useSelector((state) => state.photos.allPhotos);
+ const return_photos = useSelector((state) => state.photos.allcurrent);
  console.log("---------return_photos", return_photos);
  const photos = Object.values(return_photos);
  //const photos = [...return_photos];
@@ -22,16 +23,11 @@ function Photos() {
  return (
   <>
    <div className="photo-current-top-cover-img">This is Photo </div>
-   <div className="photo-current-mid-nav">
-    <div className="photo-current-mid-nav-item ">About</div>
-    <div className="photo-current-mid-nav-item ">Photostream</div>
-    <div className="photo-current-mid-nav-item ">Alums</div>
-    <div className="photo-current-mid-nav-item ">Faves</div>
-   </div>
+   <MidNav />
    <div className="photo-current-create-photo-row ">
     <div className="photo-current-new-photo ">
      <OpenModalButton
-      btnClassName="OpenModal-btn"
+      btnclassname="OpenModal-btn"
       buttonText="Add a photo"
       modalComponent={<AddEditPhotoFormModal formType={"Add"} photo={null} />}
      />
