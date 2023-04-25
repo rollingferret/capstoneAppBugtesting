@@ -101,7 +101,7 @@ const photosReducer = (state = initialState, action) => {
  switch (action.type) {
   case LOAD_ALL_CURRENT_PHOTOS:
    newState = {
-    ...state,
+    // ...state,
     allPhotos: { ...state.allPhotos },
     allcurrent: { ...state.allcurrent },
    };
@@ -111,7 +111,7 @@ const photosReducer = (state = initialState, action) => {
    return newState;
   case LOAD_ALL_PHOTOS:
    newState = {
-    ...state,
+    // ...state,
     allPhotos: { ...state.allPhotos },
     allcurrent: { ...state.allcurrent },
    };
@@ -122,7 +122,7 @@ const photosReducer = (state = initialState, action) => {
 
   case CREATE_UPDATE_A_PHOTO:
    newState = {
-    ...state,
+    // ...state,
     allPhotos: { ...state.allPhotos },
     allcurrent: { ...state.allcurrent },
    };
@@ -131,7 +131,7 @@ const photosReducer = (state = initialState, action) => {
 
   case DELETE_A_PHOTO:
    newState = {
-    ...state,
+    // ...state,
     allPhotos: { ...state.allPhotos },
     allcurrent: { ...state.allcurrent },
    };

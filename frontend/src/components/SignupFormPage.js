@@ -31,7 +31,7 @@ function SignupFormPage() {
      password,
     })
    )
-    .then(history.push("/photos/current"))
+    .then(() => history.push("/photos/current"))
     .catch(async (res) => {
      const data = await res.json();
      if (data && data.errors) {

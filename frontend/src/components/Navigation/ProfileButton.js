@@ -40,7 +40,8 @@ function ProfileButton({ user }) {
   history.replace("/");
  };
 
- const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+ const ulClassName =
+  "profile-dropdown logout-box" + (showMenu ? "" : " hidden");
 
  return (
   <>
@@ -48,35 +49,19 @@ function ProfileButton({ user }) {
     <i className="fas fa-user-circle" />
    </button>
    <div className={ulClassName} ref={ulRef}>
-    {user ? (
-     <>
-      <div>{user.username}</div>
-      <div>
-       {user.firstname} {user.lastname}
-      </div>
-      <div>{user.email}</div>
-      <div>
-       <button className="profile-btn-log-out-btn" onClick={logout}>
-        Log Out
-       </button>
-      </div>
-     </>
-    ) : (
-     <>
-      <OpenModalMenuItem
-       itemText="Log In"
-       itemClassName="profile-login-OpenModalMenuItem"
-       onItemClick={closeMenu}
-       modalComponent={<LoginFormModal />}
-      />
-      <OpenModalMenuItem
-       itemText="Sign Up"
-       itemClassName="profile-Sign-Up-OpenModalMenuItem"
-       onItemClick={closeMenu}
-       modalComponent={<SignupFormModal />}
-      />
-     </>
-    )}
+    {/* {user && ( */}
+    <>
+     <div>{user?.username}</div>
+     <div>
+      {user?.firstname} {user?.lastname}
+     </div>
+     <div>{user?.email}</div>
+     <div>
+      <button className="profile-btn-log-out-btn" onClick={logout}>
+       Log Out
+      </button>
+     </div>
+    </>
    </div>
   </>
  );

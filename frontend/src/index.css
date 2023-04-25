@@ -104,6 +104,10 @@ h3 {
   z-index: 2;
 }
 
+.logout-box {
+  gap: 0;
+}
+
 .You-dropdown {
   width: max-content;
   color: black;
@@ -230,7 +234,7 @@ input {
 .photo-current-new-photo,
 .photo-tile-icon-box {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .photo-current-new-photo {
@@ -283,7 +287,7 @@ input {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   background-color: white;
   color: black;

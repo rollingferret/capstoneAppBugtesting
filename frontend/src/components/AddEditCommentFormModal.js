@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../context/Modal";
 import {
  ThunkLoadAllCommentByCurrent,
@@ -9,6 +10,7 @@ import {
 
 function AddEditCommentFormModal({ formType, comment, photoId }) {
  const dispatch = useDispatch();
+ const history = useHistory();
  const [comment_, setComment_] = useState("");
  const [errors, setErrors] = useState({});
  const { closeModal } = useModal();
@@ -42,6 +44,7 @@ function AddEditCommentFormModal({ formType, comment, photoId }) {
      photoId
     )
    )
+    .then(() => history.push("/comments/current"))
     .then(closeModal)
     .catch(async (res) => {
      const data = await res.json();
@@ -70,11 +73,11 @@ function AddEditCommentFormModal({ formType, comment, photoId }) {
  };
 
  return (
-  <>
+  <div className="form-style">
    {formType === "Add" ? (
-    <h1>Add a Comment</h1>
+    <div className="form-style-title">Add a Comment</div>
    ) : (
-    <h1>Update info about a Comment</h1>
+    <div className="form-style-title">Update info about a Comment</div>
    )}
    <form onSubmit={handleSubmit}>
     <label>
@@ -88,9 +91,11 @@ function AddEditCommentFormModal({ formType, comment, photoId }) {
     </label>
     {errors.url && <p>{errors.url}</p>}
 
-    <button type="submit">{formType === "Add" ? "Add" : "Update"}</button>
+    <button className="submit-btn" type="submit">
+     {formType === "Add" ? "Add" : "Update"}
+    </button>
    </form>
-  </>
+  </div>
  );
 }
 

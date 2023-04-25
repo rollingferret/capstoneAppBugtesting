@@ -29,12 +29,12 @@ function CommentCurrent() {
   });
  }
 
- console.log(
-  "666666666 return_comments,return_photos,comments: ",
-  return_comments,
-  return_photos,
-  comments
- );
+ //  console.log(
+ //   "666666666 return_comments,return_photos,comments: ",
+ //   return_comments,
+ //   return_photos,
+ //   comments
+ //  );
 
  if (comments.length === 0 || comments[0].photo === null)
   return <div>Loading</div>;

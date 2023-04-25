@@ -101,7 +101,7 @@ const commentsReducer = (state = initialState, action) => {
  switch (action.type) {
   case LOAD_ALL_COMMENTS_BY_PHOTO:
    newState = {
-    ...state,
+    //...state,
     commentsByPhoto: { ...state.commentsByPhoto },
     commentsByCurrent: { ...state.commentsByCurrent },
    };
@@ -111,7 +111,7 @@ const commentsReducer = (state = initialState, action) => {
    return newState;
   case LOAD_ALL_COMMENTS_BY_CURRENT:
    newState = {
-    ...state,
+    //...state,
     commentsByPhoto: { ...state.commentsByPhoto },
     commentsByCurrent: { ...state.commentsByCurrent },
    };
@@ -122,7 +122,7 @@ const commentsReducer = (state = initialState, action) => {
 
   case ADD_UPDATE_A_COMMENT:
    newState = {
-    ...state,
+    //...state,
     commentsByPhoto: { ...state.commentsByPhoto },
     commentsByCurrent: { ...state.commentsByCurrent },
    };
@@ -132,7 +132,7 @@ const commentsReducer = (state = initialState, action) => {
 
   case DELETE_A_COMMENT:
    newState = {
-    ...state,
+    //...state,
     commentsByPhoto: { ...state.commentsByPhoto },
     commentsByCurrent: { ...state.commentsByCurrent },
    };

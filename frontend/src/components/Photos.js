@@ -7,19 +7,19 @@ import OpenModalButton from "./OpenModalButton";
 import MidNav from "./MidNav";
 
 function Photos({ user }) {
- console.log("step 1");
+ //console.log("first line of Photos user", user);
  const dispatch = useDispatch();
  const return_photos = useSelector((state) => state.photos.allcurrent);
- console.log("---------return_photos", return_photos);
+ //  console.log("---------return_photos", return_photos);
  const photos = Object.values(return_photos);
  //const photos = [...return_photos];
  //console.log("---------photos", photos);
  useEffect(() => {
-  console.log("step 3");
-  dispatch(ThunkLoadAllCurrentPhotos());
- }, [dispatch]);
+  // console.log("step 3");
+  if (user) dispatch(ThunkLoadAllCurrentPhotos());
+ }, [dispatch, user]);
  console.log("step 4");
- if (!return_photos) return null;
+ if (!photos) return null;
  return (
   <>
    <div className="photo-current-top-cover-img">This is Photo </div>
