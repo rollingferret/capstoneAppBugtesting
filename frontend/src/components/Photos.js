@@ -28,7 +28,7 @@ function Photos({ user }) {
     <div className="photo-current-new-photo ">
      <OpenModalButton
       btnclassname="OpenModal-btn"
-      buttonText="Add a photo"
+      buttonText={<i className="fa-solid fa-square-plus"></i>}
       modalComponent={<AddEditPhotoFormModal formType={"Add"} photo={null} />}
      />
     </div>

@@ -36,18 +36,19 @@ function CommentCurrent() {
   comments
  );
 
- if (comments.length === 0 || return_photos === null) return <div>Loading</div>;
+ if (comments.length === 0 || comments[0].photo === null)
+  return <div>Loading</div>;
  else
   return (
    <>
-    <div>Manage Your Comments</div>
+    <div className="CommentCurrent-page-title">Manage Your Comments</div>
     <div>
      {comments?.map((comment) => {
       return (
        <div key={comment?.id} className="CommentCurrent-comment-container">
         <div
          style={{
-          backgroundImage: `url(${comment?.photo.url})`,
+          backgroundImage: `url(${comment?.photo?.url})`,
           width: "250px",
           height: "200px",
           backgroundSize: "cover",
@@ -57,19 +58,23 @@ function CommentCurrent() {
          {/* <img src={`${comment.photo.url}`}></img> */}
         </div>
         <div className="CommentCurrent-comment-box">
-         <div>{comment?.photo.title}</div>
-         <div>{comment?.comment}</div>
-         <div>
+         <div className="comment-current-title">{comment?.photo?.title}</div>
+         <div className="comment-current-item">{comment?.comment}</div>
+         <div className="comment-current-item-btn">
           <OpenModalButton
-           btnclassname="OpenModal-btn"
-           buttonText="Update"
+           btnclassname="OpenModal-btn "
+           buttonText={
+            <i className="fa-solid fa-pen-to-square CommentCurrent-btn"></i>
+           }
            modalComponent={
             <AddEditCommentFormModal formType={"Edit"} comment={comment} />
            }
           />
           <OpenModalButton
-           btnclassname="OpenModal-btn"
-           buttonText="Delete"
+           btnclassname="OpenModal-btn "
+           buttonText={
+            <i className="fa-solid fa-trash-can CommentCurrent-btn"></i>
+           }
            modalComponent={<DeleteCommentFormModal comment={comment} />}
           />
          </div>

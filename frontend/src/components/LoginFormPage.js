@@ -61,9 +61,13 @@ function LoginFormPage() {
      />
     </label>
     {errors.credential && <p>{errors.credential}</p>}
-    <button type="submit">Log In</button>
+    <button className="submit-btn" type="submit">
+     Log In
+    </button>
    </form>
-   <button onClick={() => demoUser()}>demoUser</button>
+   <button className="demoUser-btn" onClick={() => demoUser()}>
+    demoUser
+   </button>
   </>
  );
 }

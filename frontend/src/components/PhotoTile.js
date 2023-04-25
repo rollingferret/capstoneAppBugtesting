@@ -6,31 +6,39 @@ import DeletePhotoFormModal from "./DeletePhotoFormModal";
 
 function PhotoTile({ photo }) {
  return (
-  <NavLink exact to={`/photos/${photo?.id}`}>
-   <div
-    style={{
-     backgroundImage: `url(${photo?.url})`,
-     height: "200px",
-     backgroundSize: "cover",
-    }}
-   >
-    {/* <img
-    src={`${photo?.url}`}
-    style={{ height: "200px" }}
-    alt="imported by author"
-   /> */}
+  <div
+   style={{
+    backgroundImage: `url(${photo?.url})`,
+    width: "250px",
+    height: "200px",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    zIndex: "1",
+   }}
+  >
+   <NavLink exact to={`/photos/${photo?.id}`}>
+    <div
+     style={{
+      width: "100%",
+      height: "173px",
+      backgroundSize: "cover",
+      zIndex: "2",
+     }}
+    ></div>
+   </NavLink>
+   <div className="photo-tile-icon-box">
     <OpenModalButton
      btnclassname="OpenModal-btn"
-     buttonText="Update a photo"
+     buttonText={<i className="fa-solid fa-pen-to-square photo-tile-btn"></i>}
      modalComponent={<AddEditPhotoFormModal formType={"Edit"} photo={photo} />}
     />
     <OpenModalButton
      btnclassname="OpenModal-btn"
-     buttonText="Delete a photo"
+     buttonText={<i className="fa-solid fa-trash-can photo-tile-btn"></i>}
      modalComponent={<DeletePhotoFormModal photo={photo} />}
     />
    </div>
-  </NavLink>
+  </div>
  );
 }
 export default PhotoTile;

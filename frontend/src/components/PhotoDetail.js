@@ -66,7 +66,8 @@ function PhotoDetail() {
      </div>
     </div>
     <div className="PhotoDetail-comments-container">
-     <div className="PhotoDetail-user-box">{photo?.title}</div>
+     <div className="PhotoDetail-title-box">{photo?.title}</div>
+     <div className="PhotoDetail-title-comment">Comments</div>
      {comments?.map((comment) => {
       return (
        <div key={comment?.id} className="PhotoDetail-comment-box">

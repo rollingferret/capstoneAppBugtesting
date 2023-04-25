@@ -68,11 +68,11 @@ function AddEditPhotoFormModal({ formType, photo }) {
  };
 
  return (
-  <>
+  <div className="form-style">
    {formType === "Add" ? (
-    <h1>Add a Photo</h1>
+    <div className="form-style-title">Add a Photo</div>
    ) : (
-    <h1>Update info about a Photo</h1>
+    <div className="form-style-title">Update info about a Photo</div>
    )}
    <form onSubmit={handleSubmit}>
     <label>
@@ -86,7 +86,7 @@ function AddEditPhotoFormModal({ formType, photo }) {
     </label>
     {errors.title && <p>{errors.title}</p>}
     <label>
-     URL
+     url
      <input
       type="text"
       value={url}
@@ -96,9 +96,11 @@ function AddEditPhotoFormModal({ formType, photo }) {
     </label>
     {errors.url && <p>{errors.url}</p>}
 
-    <button type="submit">{formType === "Add" ? "Add" : "Update"}</button>
+    <button className="submit-btn" type="submit">
+     {formType === "Add" ? "Add" : "Update"}
+    </button>
    </form>
-  </>
+  </div>
  );
 }
 

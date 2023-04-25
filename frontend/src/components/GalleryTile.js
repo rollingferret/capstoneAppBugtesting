@@ -14,6 +14,7 @@ function GalleryTile({ photo, user }) {
       height: "200px",
       width: "250px",
       backgroundSize: "cover",
+      backgroundPosition: "center",
      }}
     >
      {/* <img
@@ -24,12 +25,14 @@ function GalleryTile({ photo, user }) {
     </div>
    </NavLink>
    <div className="phototile-box">
-    <div>{photo?.title}</div>
-    <div>{photo?.createdAt.slice(0, 7)}</div>
+    <div className="phototile-box-text">
+     <div className="phototile-box-item">{photo?.title}</div>
+     <div className="phototile-box-item">{photo?.createdAt.slice(0, 7)}</div>
+    </div>
     {photo.ownerId !== user.id && (
      <OpenModalButton
-      btnclassname="OpenModal-btn-gallery"
-      buttonText="Add"
+      btnclassname="OpenModal-btn-gallery phototile-box-item"
+      buttonText={<i class="fa-regular fa-square-plus"></i>}
       modalComponent={
        <AddEditCommentFormModal
         formType={"Add"}

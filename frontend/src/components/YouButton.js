@@ -31,7 +31,7 @@ function YouButton({ user }) {
 
  return (
   <>
-   <button className="profile-button" onClick={openMenu}>
+   <button className="profile-button you-button" onClick={openMenu}>
     You
    </button>
    <div className={ulClassName} ref={ulRef}>

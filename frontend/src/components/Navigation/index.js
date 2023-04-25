@@ -37,7 +37,7 @@ function Navigation({ isLoaded }) {
      >
       Imagecfr
      </NavLink>
-     <YouButton />
+     {sessionUser && <YouButton />}
     </div>
     {isLoaded && (
      <>
@@ -53,8 +53,15 @@ function Navigation({ isLoaded }) {
      <div className="signup-login-form-container">
       <SignupFormPage />
       <div>
-       <span>Already a Imagecfr member?</span>
-       <button onClick={() => setFormType("login")}>Login here</button>
+       <span className="signup-login-switch-item">
+        Already a Imagecfr member?
+       </span>
+       <button
+        className="signup-login-switch-item"
+        onClick={() => setFormType("login")}
+       >
+        Login here
+       </button>
       </div>
      </div>
     </div>
@@ -64,8 +71,13 @@ function Navigation({ isLoaded }) {
      <div className="signup-login-form-container">
       <LoginFormPage />
       <div>
-       <span>Not a Imagecfr member?</span>
-       <button onClick={() => setFormType("signup")}>Sign up here</button>
+       <span className="signup-login-switch-item">Not a Imagecfr member?</span>
+       <button
+        className="signup-login-switch-item"
+        onClick={() => setFormType("signup")}
+       >
+        Sign up here
+       </button>
       </div>
      </div>
     </div>
