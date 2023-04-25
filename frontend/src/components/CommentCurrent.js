@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { ThunkLoadAllCommentByCurrent } from "../store/comments";
 import { ThunkLoadAllPhotos } from "../store/photos";
 import AddEditCommentFormModal from "./AddEditCommentFormModal";
@@ -36,14 +37,15 @@ function CommentCurrent() {
  //   comments
  //  );
 
- if (comments.length === 0 || comments[0].photo === null)
-  return <div>Loading</div>;
- else
-  return (
-   <>
-    <div className="CommentCurrent-page-title">Manage Your Comments</div>
-    <div>
-     {comments?.map((comment) => {
+ //  if (comments.length === 0 || comments[0].photo === null)
+ //   return <div>Loading</div>;
+ //  else
+ return (
+  <>
+   <div className="CommentCurrent-page-title">Manage Your Comments</div>
+   <div>
+    {comments.length !== 0 &&
+     comments.map((comment) => {
       return (
        <div key={comment?.id} className="CommentCurrent-comment-container">
         <div
@@ -82,8 +84,27 @@ function CommentCurrent() {
        </div>
       );
      })}
-    </div>
-   </>
-  );
+    {comments.length === 0 && (
+     <>
+      <div className="comment-current-item-coming"> Add your comments!</div>
+      <div>
+       <NavLink
+        style={{
+         paddingLeft: "30px",
+         alignSelf: "start",
+         display: "block",
+         textDecoration: "none",
+        }}
+        to="/photos/gallery"
+       >
+        {" "}
+        Gallery
+       </NavLink>
+      </div>
+     </>
+    )}
+   </div>
+  </>
+ );
 }
 export default CommentCurrent;

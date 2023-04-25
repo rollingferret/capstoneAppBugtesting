@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { ThunkLoadAllCurrentPhotos } from "../store/photos";
@@ -9,11 +9,13 @@ function PhotoDetail() {
  const params = useParams();
  const dispatch = useDispatch();
  const { photoId } = params;
- console.log("PhotoDetail PhotoId: ", photoId);
- const photo_id = parseInt(photoId);
+ //const [photo_id, setPhoto_id] = useState();
 
+ console.log("PhotoDetail PhotoId: ", photoId);
+ const thePhotoId = parseInt(photoId);
+ //setPhoto_id(thePhotoId);
  const return_photos = useSelector((state) => state.photos.allcurrent);
- const photo = return_photos[parseInt(photo_id)];
+ const photo = return_photos[thePhotoId];
  const return_comments = useSelector((state) => state.comments.commentsByPhoto);
  console.log("PhotoDetail return_comments: ", return_comments);
 
@@ -24,14 +26,18 @@ function PhotoDetail() {
  }, [dispatch]);
 
  useEffect(() => {
-  console.log("************** ThunkLoadAllCommentByPhoto photoId:", photoId);
-  dispatch(ThunkLoadAllCommentByPhoto(photoId));
- }, [dispatch, photoId]);
- if (comments.length !== 0 && photo !== null)
-  return (
-   <>
-    <div className="PhotoDetail-show-backgroud-container">
-     {/* <NavLink
+  console.log(
+   "************** ThunkLoadAllCommentByPhoto thePhotoId:",
+   thePhotoId
+  );
+  if (thePhotoId) dispatch(ThunkLoadAllCommentByPhoto(thePhotoId));
+ }, [dispatch, thePhotoId]);
+
+ //if (comments.length !== 0 && photo !== null)
+ return (
+  <>
+   <div className="PhotoDetail-show-backgroud-container">
+    {/* <NavLink
       style={{
        textDecoration: "none",
        color: "white",
@@ -42,33 +48,34 @@ function PhotoDetail() {
       exact
       to="/"
      ></NavLink> */}
-     <NavLink
-      style={{
-       color: "white",
-       alignSelf: "start",
-       display: "block",
-       position: "absolute",
-       left: "10px",
-       top: "10px",
-       fontSize: "10pt",
-      }}
-      to="/photos/current"
-     >
-      <i className="fa-solid fa-arrow-left fa-sm"></i> Back to photostream
-     </NavLink>
-     <div
-      className="PhotoDetail-show-container"
-      style={{
-       backgroundImage: `url(${photo?.url})`,
-      }}
-     >
-      photo detail
-     </div>
+    <NavLink
+     style={{
+      color: "white",
+      alignSelf: "start",
+      display: "block",
+      position: "absolute",
+      left: "10px",
+      top: "10px",
+      fontSize: "10pt",
+     }}
+     to="/photos/current"
+    >
+     <i className="fa-solid fa-arrow-left fa-sm"></i> Back to photostream
+    </NavLink>
+    <div
+     className="PhotoDetail-show-container"
+     style={{
+      backgroundImage: `url(${photo?.url})`,
+     }}
+    >
+     photo detail
     </div>
-    <div className="PhotoDetail-comments-container">
-     <div className="PhotoDetail-title-box">{photo?.title}</div>
-     <div className="PhotoDetail-title-comment">Comments</div>
-     {comments?.map((comment) => {
+   </div>
+   <div className="PhotoDetail-comments-container">
+    <div className="PhotoDetail-title-box">{photo?.title}</div>
+    <div className="PhotoDetail-title-comment">Comments</div>
+    {comments.length !== 0 &&
+     comments.map((comment) => {
       return (
        <div key={comment?.id} className="PhotoDetail-comment-box">
         <div className="PhotoDetail-comment-name">
@@ -78,9 +85,12 @@ function PhotoDetail() {
        </div>
       );
      })}
-    </div>
-   </>
-  );
- else return <div>Loading...</div>;
+    {comments.length === 0 && (
+     <div className="PhotoDetail-comment"> Coming soon!</div>
+    )}
+   </div>
+  </>
+ );
+ //else return <div>Loading...</div>;
 }
 export default PhotoDetail;

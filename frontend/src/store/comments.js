@@ -4,6 +4,8 @@ const LOAD_ALL_COMMENTS_BY_PHOTO = "comments/load_all_comments_by_photo";
 const LOAD_ALL_COMMENTS_BY_CURRENT = "comments/load_all_comments_by_current";
 const ADD_UPDATE_A_COMMENT = "comments/add_update_a_comment";
 const DELETE_A_COMMENT = "comments/delete_a_comment";
+// const CLEAR_COMMENT_BY_CURRENT = "comments/clear_comment_by_current";
+// const CLEAR_COMMENT_BY_PHOTO = "comments/clear_comment_by_photo";
 
 export const loadAllCommentByPhoto = (comments) => {
  return {
@@ -30,13 +32,27 @@ export const deleteAComment = (commentId) => {
  };
 };
 
+// export const clearCommentByCurrent = () => {
+//  return {
+//   type: CLEAR_COMMENT_BY_CURRENT,
+//  };
+// };
+
+// export const clearCommentByPhoto = () => {
+//  return {
+//   type: CLEAR_COMMENT_BY_PHOTO,
+//  };
+// };
+
 //ThunkLoadAllCommentByPhoto
 export const ThunkLoadAllCommentByPhoto = (photoId) => async (dispatch) => {
  console.log("first line ThunkLoadAllCommentByPhoto photoId:", photoId);
  const res = await csrfFetch(`/api/photos/${photoId}/comments`);
 
  if (res.ok) {
+  console.log("++++++++++++++ ThunkLoadAllCommentByPhoto res:", res);
   const comments = await res.json();
+  console.log("--------------- ThunkLoadAllCommentByPhoto comments:", comments);
   dispatch(loadAllCommentByPhoto(comments));
  }
  return res;
@@ -102,7 +118,7 @@ const commentsReducer = (state = initialState, action) => {
   case LOAD_ALL_COMMENTS_BY_PHOTO:
    newState = {
     //...state,
-    commentsByPhoto: { ...state.commentsByPhoto },
+    commentsByPhoto: {},
     commentsByCurrent: { ...state.commentsByCurrent },
    };
    action.comments.forEach((comment) => {
@@ -113,7 +129,7 @@ const commentsReducer = (state = initialState, action) => {
    newState = {
     //...state,
     commentsByPhoto: { ...state.commentsByPhoto },
-    commentsByCurrent: { ...state.commentsByCurrent },
+    commentsByCurrent: {},
    };
    action.comments.forEach((comment) => {
     newState.commentsByCurrent[comment.id] = comment;
@@ -138,6 +154,22 @@ const commentsReducer = (state = initialState, action) => {
    };
    delete newState.commentsByCurrent[action.commentId];
    return newState;
+
+  // case CLEAR_COMMENT_BY_PHOTO:
+  //  newState = {
+  //   //...state,
+  //   commentsByPhoto: {},
+  //   commentsByCurrent: { ...state.commentsByCurrent },
+  //  };
+  //  return newState;
+
+  // case CLEAR_COMMENT_BY_CURRENT:
+  //  newState = {
+  //   //...state,
+  //   commentsByPhoto: { ...state.commentsByPhoto },
+  //   commentsByCurrent: {},
+  //  };
+  //  return newState;
 
   default:
    return state;

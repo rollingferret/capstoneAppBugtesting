@@ -390,3 +390,7 @@ input {
 .CommentCurrent-btn {
   font-weight: 300;
 }
+
+.comment-current-item-coming {
+  padding-left: 30px;
+}

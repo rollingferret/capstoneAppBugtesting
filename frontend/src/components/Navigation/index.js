@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
   <div className="whole-screen">
    <div className="navigation-nav-bar">
     <div className="navigation-nav-home">
-     <NavLink
+     {/* <NavLink
       style={{
        textDecoration: "none",
        color: "white",
@@ -34,9 +34,9 @@ function Navigation({ isLoaded }) {
       }}
       exact
       to="/"
-     >
-      Imagecfr
-     </NavLink>
+     > */}
+     Imagecfr
+     {/* </NavLink> */}
      {sessionUser && <YouButton />}
     </div>
     {isLoaded && (

@@ -123,7 +123,7 @@ router.delete("/:photoId", requireAuth, async (req, res, next) => {
  });
 });
 
-//*******Get all Reviews by a photo
+//*******Get all comments by a photo
 router.get("/:photoId/comments", requireAuth, async (req, res, next) => {
  let { photoId } = req.params;
  photoId = parseInt(photoId);
@@ -138,7 +138,7 @@ router.get("/:photoId/comments", requireAuth, async (req, res, next) => {
   raw: true,
  });
 
- console.log("!!!-------      comments: ", comments);
+ console.log("!!!-------comments: ", comments);
 
  res.status(201);
  return res.json(comments);
