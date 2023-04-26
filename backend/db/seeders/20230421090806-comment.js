@@ -97,44 +97,44 @@ module.exports = {
     {
      //13
      photoId: 7,
-     userId: 2,
+     userId: 4,
      comment: "Fantastic shot, nice composition.",
     },
     {
      //14
      photoId: 7,
-     userId: 3,
+     userId: 5,
      comment:
       "I found your treasure at paradise!Thank you for sharing with us!",
     },
     {
      //15
      photoId: 8,
-     userId: 3,
+     userId: 5,
      comment: "Remarkable colours there! Great shot!",
     },
     {
      //16
      photoId: 8,
-     userId: 4,
+     userId: 6,
      comment: "Fabulous shot. Great colours and detail.",
     },
     {
      //17
      photoId: 9,
-     userId: 4,
+     userId: 6,
      comment: "My goodness, that's one to frame !!! Great job!",
     },
     {
      //18
      photoId: 9,
-     userId: 5,
+     userId: 1,
      comment: "Lovely capture.",
     },
     {
      //19
      photoId: 10,
-     userId: 5,
+     userId: 1,
      comment:
       "Great shot and stream with fantastic photos thanks for sharing them...!",
     },

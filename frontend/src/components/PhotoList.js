@@ -3,6 +3,7 @@ import PhotoTile from "./PhotoTile";
 import GalleryTile from "./GalleryTile";
 
 function PhotoList({ photos, type, user }) {
+ console.log("PhotoList photos: ", photos);
  if (type === "photo")
   return photos?.map((photo) => (
    <div key={photo?.id}>
