@@ -32,7 +32,7 @@ function GalleryTile({ photo, user }) {
     {photo.ownerId !== user.id && (
      <OpenModalButton
       btnclassname="OpenModal-btn-gallery phototile-box-item"
-      buttonText={<i class="fa-regular fa-square-plus"></i>}
+      buttonText={<i className="fa-regular fa-square-plus"></i>}
       modalComponent={
        <AddEditCommentFormModal
         formType={"Add"}

@@ -16,7 +16,7 @@ function SignupFormPage() {
  const [errors, setErrors] = useState({});
  const history = useHistory();
 
- if (sessionUser) return <Redirect to="/" />;
+ if (sessionUser) return <Redirect to="/photos/current" />;
 
  const handleSubmit = (e) => {
   e.preventDefault();
@@ -58,7 +58,7 @@ function SignupFormPage() {
       required
      />
     </label>
-    {errors.email && <p>{errors.email}</p>}
+    {errors.email && <p className="error-message">{errors.email}</p>}
     <label>
      Username
      <input
@@ -68,7 +68,7 @@ function SignupFormPage() {
       required
      />
     </label>
-    {errors.username && <p>{errors.username}</p>}
+    {errors.username && <p className="error-message">{errors.username}</p>}
     <label>
      First Name
      <input
@@ -78,7 +78,7 @@ function SignupFormPage() {
       required
      />
     </label>
-    {errors.firstname && <p>{errors.firstname}</p>}
+    {errors.firstname && <p className="error-message">{errors.firstname}</p>}
     <label>
      Last Name
      <input
@@ -88,7 +88,7 @@ function SignupFormPage() {
       required
      />
     </label>
-    {errors.lastname && <p>{errors.lastname}</p>}
+    {errors.lastname && <p className="error-message">{errors.lastname}</p>}
     <label>
      Password
      <input
@@ -98,7 +98,7 @@ function SignupFormPage() {
       required
      />
     </label>
-    {errors.password && <p>{errors.password}</p>}
+    {errors.password && <p className="error-message">{errors.password}</p>}
     <label>
      Confirm Password
      <input
@@ -108,7 +108,9 @@ function SignupFormPage() {
       required
      />
     </label>
-    {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+    {errors.confirmPassword && (
+     <p className="error-message">{errors.confirmPassword}</p>
+    )}
     <button className="submit-btn" type="submit">
      Sign Up
     </button>

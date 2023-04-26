@@ -19,6 +19,11 @@ h3 {
   font-size: 16pt;
 }
 
+.error-message {
+  font-size: 10pt;
+  color: #FF5A5F;
+}
+
 /* ************** */
 /*   Modal        */
 /* ************** */
