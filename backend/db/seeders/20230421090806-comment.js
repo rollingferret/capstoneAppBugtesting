@@ -98,75 +98,75 @@ module.exports = {
      //13
      photoId: 7,
      userId: 2,
-     comment: "Wonderful image. Congrats on Explore.",
+     comment: "Wonderful image. Congrats on Explore2.",
     },
     {
      //14
      photoId: 7,
      userId: 3,
-     comment: "Gorgeous shot",
+     comment: "Gorgeous shot2",
     },
     {
      //15
      photoId: 8,
      userId: 3,
-     comment: "hi there! I really like your gallery, you are very talented!",
+     comment: "hi there! I really like your gallery, you are very talented!2",
     },
     {
      //16
      photoId: 8,
      userId: 4,
-     comment: "mind-blowing light!",
+     comment: "mind-blowing light!2",
     },
     {
      //17
      photoId: 9,
      userId: 4,
-     comment: "This is a great shot, well done.",
+     comment: "This is a great shot, well done.2",
     },
     {
      //18
      photoId: 9,
      userId: 5,
      comment:
-      "Excellent picture , the lighting and focus on this one is spot on perfection. Wonderful capture.",
+      "Excellent picture , the lighting and focus on this one is spot on perfection. Wonderful capture2.",
     },
     {
      //19
      photoId: 10,
      userId: 5,
-     comment: "What light and colours !",
+     comment: "What light and colours !2",
     },
     {
      //20
      photoId: 10,
      userId: 6,
-     comment: "A very pretty looking photograph.",
+     comment: "A very pretty looking photograph.2",
     },
     {
      //21
      photoId: 11,
      userId: 6,
      comment:
-      "Fabulous shot! Marvelous colors and details! The light is fantastic!",
+      "Fabulous shot! Marvelous colors and details! The light is fantastic!2",
     },
     {
      //22
      photoId: 11,
      userId: 1,
-     comment: "Truly a Beautiful Damoiselle, beautiful capture",
+     comment: "Truly a Beautiful Damoiselle, beautiful capture2",
     },
     {
      //23
      photoId: 12,
      userId: 1,
-     comment: "This is so pretty amazing ",
+     comment: "This is so pretty amazing2 ",
     },
     {
      //24
      photoId: 12,
      userId: 2,
-     comment: "Just lovely !!! Excellent light and composition !",
+     comment: "Just lovely !!! Excellent light and composition !2",
     },
    ],
    {}

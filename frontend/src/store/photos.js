@@ -103,7 +103,7 @@ const photosReducer = (state = initialState, action) => {
    newState = {
     // ...state,
     allPhotos: { ...state.allPhotos },
-    allcurrent: { ...state.allcurrent },
+    allcurrent: {},
    };
    action.photos.forEach((photo) => {
     newState.allcurrent[photo.id] = photo;
@@ -112,7 +112,7 @@ const photosReducer = (state = initialState, action) => {
   case LOAD_ALL_PHOTOS:
    newState = {
     // ...state,
-    allPhotos: { ...state.allPhotos },
+    allPhotos: {},
     allcurrent: { ...state.allcurrent },
    };
    action.photos.forEach((photo) => {
