@@ -41,7 +41,7 @@ router.post("/", validateLogin, async (req, res, next) => {
    },
   },
  });
-
+ console.log("############user", user);
  if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
   const err = new Error("Login failed");
   err.status = 401;
@@ -56,6 +56,8 @@ router.post("/", validateLogin, async (req, res, next) => {
   firstname: user.firstname,
   lastname: user.lastname,
   username: user.username,
+  createdAt: user.createdAt,
+  updatedAt: user.updatedAt,
  };
 
  await setTokenCookie(res, safeUser);
@@ -81,6 +83,8 @@ router.get("/", (req, res) => {
    username: user.username,
    firstname: user.firstname,
    lastname: user.lastname,
+   createdAt: user.createdAt,
+   updatedAt: user.updatedAt,
   };
   return res.json({
    user: safeUser,

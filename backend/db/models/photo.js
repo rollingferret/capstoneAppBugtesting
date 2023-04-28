@@ -30,11 +30,11 @@ module.exports = (sequelize, DataTypes) => {
   {
    title: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(30),
    },
    url: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(30),
    },
    createdAt: {
     allowNull: false,

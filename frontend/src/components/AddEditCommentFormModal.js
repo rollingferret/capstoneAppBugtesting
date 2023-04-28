@@ -49,6 +49,7 @@ function AddEditCommentFormModal({ formType, comment, photoId }) {
     .catch(async (res) => {
      const data = await res.json();
      if (data && data.errors) {
+      console.log("!!!!!!!!!!!!!!data.errors: ", data.errors);
       setErrors(data.errors);
      }
     });
@@ -66,6 +67,7 @@ function AddEditCommentFormModal({ formType, comment, photoId }) {
     .catch(async (res) => {
      const data = await res.json();
      if (data && data.errors) {
+      console.log("!!!!!!!!!!!!!!data.errors: ", data.errors);
       setErrors(data.errors);
      }
     });
@@ -82,16 +84,17 @@ function AddEditCommentFormModal({ formType, comment, photoId }) {
    <form onSubmit={handleSubmit}>
     <label>
      Comment
-     <input
-      type="text"
+     <textarea
+      rows="5"
+      cols="20"
       value={comment_}
       onChange={(e) => setComment_(e.target.value)}
       required
      />
     </label>
-    {errors.url && <p>{errors.url}</p>}
+    {errors.comment && <p className="error-message">{errors.comment}</p>}
 
-    <button className="submit-btn" type="submit">
+    <button className="submit-btn " type="submit">
      {formType === "Add" ? "Add" : "Update"}
     </button>
    </form>

@@ -4,7 +4,7 @@ import OpenModalButton from "./OpenModalButton";
 import AddEditCommentFormModal from "./AddEditCommentFormModal";
 
 function GalleryTile({ photo, user }) {
- //console.log("=================PhotoTile user: ", user);
+ console.log("=================PhotoTile photo user: ", photo, user);
  return (
   <div className="phototile">
    <NavLink exact to={`/photos/${photo?.id}`}>
@@ -15,6 +15,8 @@ function GalleryTile({ photo, user }) {
       width: "250px",
       backgroundSize: "cover",
       backgroundPosition: "center",
+      position: "absolute",
+      top: "0",
      }}
     >
      {/* <img
@@ -24,14 +26,16 @@ function GalleryTile({ photo, user }) {
    /> */}
     </div>
    </NavLink>
-   <div className="phototile-box">
-    <div className="phototile-box-text">
-     <div className="phototile-box-item">{photo?.title}</div>
-     <div className="phototile-box-item">{photo?.createdAt.slice(0, 7)}</div>
+   <div className="gallery-box">
+    <div className="gallery-box-text">
+     <div className="gallery-box-item">{photo?.title}</div>
+     <div className="gallery-box-item">{photo?.createdAt.slice(0, 7)}</div>
     </div>
+   </div>
+   <div className="gallery-box-btn">
     {photo.ownerId !== user.id && (
      <OpenModalButton
-      btnclassname="OpenModal-btn-gallery phototile-box-item"
+      btnclassname="OpenModal-btn-gallery "
       buttonText={<i className="fa-regular fa-square-plus"></i>}
       modalComponent={
        <AddEditCommentFormModal

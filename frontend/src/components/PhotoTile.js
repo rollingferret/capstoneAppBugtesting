@@ -4,39 +4,49 @@ import OpenModalButton from "./OpenModalButton";
 import AddEditPhotoFormModal from "./AddEditPhotoFormModal";
 import DeletePhotoFormModal from "./DeletePhotoFormModal";
 
-function PhotoTile({ photo }) {
+function PhotoTile({ photo, user }) {
  return (
   <div
    style={{
+    position: "relative",
     backgroundImage: `url(${photo?.url})`,
-    width: "250px",
-    height: "200px",
+    width: "350px",
+    height: "280px",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    zIndex: "1",
    }}
   >
    <NavLink exact to={`/photos/${photo?.id}`}>
     <div
      style={{
-      width: "100%",
-      height: "173px",
+      position: "absolute",
+      top: "0",
+      minWidth: "100%",
+      minHeight: "168px",
       backgroundSize: "cover",
-      zIndex: "2",
      }}
     ></div>
    </NavLink>
+
    <div className="photo-tile-icon-box">
-    <OpenModalButton
-     btnclassname="OpenModal-btn"
-     buttonText={<i className="fa-solid fa-pen-to-square photo-tile-btn"></i>}
-     modalComponent={<AddEditPhotoFormModal formType={"Edit"} photo={photo} />}
-    />
-    <OpenModalButton
-     btnclassname="OpenModal-btn"
-     buttonText={<i className="fa-solid fa-trash-can photo-tile-btn"></i>}
-     modalComponent={<DeletePhotoFormModal photo={photo} />}
-    />
+    <div>
+     <div className="small-text photo-text">
+      {photo.title}
+      {` by ${user.firstname}`}
+     </div>
+    </div>
+    <div className="photo-tile-icons">
+     <OpenModalButton
+      btnclassname="OpenModal-btn edit-delete-photo"
+      buttonText={<i className="fa-solid fa-pen-to-square photo-tile-btn"></i>}
+      modalComponent={<AddEditPhotoFormModal formType={"Edit"} photo={photo} />}
+     />
+     <OpenModalButton
+      btnclassname="OpenModal-btn edit-delete-photo"
+      buttonText={<i className="fa-solid fa-trash-can photo-tile-btn"></i>}
+      modalComponent={<DeletePhotoFormModal photo={photo} />}
+     />
+    </div>
    </div>
   </div>
  );

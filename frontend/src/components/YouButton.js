@@ -43,10 +43,11 @@ function YouButton({ user }) {
         alignSelf: "start",
         display: "block",
         textDecoration: "none",
+        fontSize: "14pt",
+        color: "black",
        }}
        to="/photos/gallery"
       >
-       {" "}
        Gallery
       </NavLink>
      </div>
@@ -56,6 +57,8 @@ function YouButton({ user }) {
         alignSelf: "start",
         display: "block",
         textDecoration: "none",
+        fontSize: "14pt",
+        color: "black",
        }}
        to="/photos/current"
       >
@@ -69,6 +72,8 @@ function YouButton({ user }) {
         alignSelf: "start",
         display: "block",
         textDecoration: "none",
+        fontSize: "14pt",
+        color: "black",
        }}
        to="/comments/current"
       >
@@ -76,8 +81,8 @@ function YouButton({ user }) {
        Comments
       </NavLink>
      </div>
-     <div>Alums</div>
-     <div>Faves</div>
+     {/* <div className="You-dropdown-item">Albums</div>
+     <div className="You-dropdown-item">Faves</div> */}
     </>
    </div>
   </>

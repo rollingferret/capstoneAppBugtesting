@@ -5,6 +5,7 @@ import { ThunkLoadAllCurrentPhotos } from "../store/photos";
 import AddEditPhotoFormModal from "./AddEditPhotoFormModal";
 import OpenModalButton from "./OpenModalButton";
 import MidNav from "./MidNav";
+import BottomBanner from "./BottomBanner";
 
 function Photos({ user }) {
  //console.log("first line of Photos user", user);
@@ -13,7 +14,7 @@ function Photos({ user }) {
  //  console.log("---------return_photos", return_photos);
  const photos = Object.values(return_photos);
  //const photos = [...return_photos];
- //console.log("---------photos", photos);
+ console.log("---------user", user);
  useEffect(() => {
   // console.log("step 3");
   if (user) dispatch(ThunkLoadAllCurrentPhotos());
@@ -22,7 +23,22 @@ function Photos({ user }) {
  if (!photos) return null;
  return (
   <>
-   <div className="photo-current-top-cover-img">This is Photo </div>
+   <div className="photo-current-top-cover-img">
+    <span className="photo-logo-box">
+     <img
+      className="photo-logo"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLNqpbvkqoDHq1fwkBZBA8dByg5H8O0dMnow&usqp=CAU"
+     />
+    </span>
+    <div className="photo-current-user">
+     <div className="photo-current-user-name">{`${user?.firstname} ${user?.lastname}`}</div>
+     <div>{user?.email}</div>
+    </div>
+    <div className="photo-current-photolength">
+     {`${photos?.length} photos`} &#160; &#160;{" "}
+     {`joined ${user?.createdAt.slice(0, 4)} `}
+    </div>
+   </div>
    <MidNav />
    <div className="photo-current-create-photo-row ">
     <div className="photo-current-new-photo ">
@@ -36,6 +52,7 @@ function Photos({ user }) {
    <div className="photo-current-photolist-container">
     {!!photos && <PhotoList photos={photos} user={user} type="photo" />}
    </div>
+   <BottomBanner />
   </>
  );
 }

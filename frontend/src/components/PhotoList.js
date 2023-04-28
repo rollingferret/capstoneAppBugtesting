@@ -7,7 +7,7 @@ function PhotoList({ photos, type, user }) {
  if (type === "photo")
   return photos?.map((photo) => (
    <div key={photo?.id}>
-    <PhotoTile photo={photo} />{" "}
+    <PhotoTile photo={photo} user={user} />{" "}
    </div>
   ));
  else

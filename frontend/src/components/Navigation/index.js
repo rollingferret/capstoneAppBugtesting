@@ -35,7 +35,13 @@ function Navigation({ isLoaded }) {
       exact
       to="/"
      > */}
-     Imagecfr
+     <span>
+      <img
+       className="nav-bar-logo"
+       src="https://www.transformationmarketing.com/wp-content/uploads/2020/01/color-wheel.jpg"
+      />
+     </span>
+     &#160; &#160;Imagecfr
      {/* </NavLink> */}
      {sessionUser && <YouButton />}
     </div>

@@ -14,6 +14,15 @@ function AddEditPhotoFormModal({ formType, photo }) {
  const [errors, setErrors] = useState({});
  const { closeModal } = useModal();
 
+ function isImgUrl(url_) {
+  const img = new Image();
+  img.src = url_;
+  return new Promise((resolve) => {
+   img.onload = () => resolve(true);
+   img.onerror = () => resolve(false);
+  });
+ }
+
  const return_photos = useSelector((state) => state.photos.allcurrent);
  useEffect(() => {
   if (formType === "Edit") {
@@ -30,9 +39,12 @@ function AddEditPhotoFormModal({ formType, photo }) {
   }
  }, [formType, thePhoto]);
 
- const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
   e.preventDefault();
   setErrors({});
+  let isImageUrl;
+  await isImgUrl(url).then((res) => (isImageUrl = res));
+  if (!isImageUrl) return setErrors({ url: "Not valid image url" });
   if (formType === "Add") {
    return dispatch(
     ThunkCreateAPhoto({
@@ -44,7 +56,8 @@ function AddEditPhotoFormModal({ formType, photo }) {
     .catch(async (res) => {
      const data = await res.json();
      if (data && data.errors) {
-      setErrors(data.errors);
+      console.log("22222222222222 data.errors.errors: ", data.errors.errors);
+      setErrors(data.errors.errors);
      }
     });
   } else {
@@ -84,17 +97,17 @@ function AddEditPhotoFormModal({ formType, photo }) {
       required
      />
     </label>
-    {errors.title && <p>{errors.title}</p>}
+    {errors.title && <p className="error-message">{errors.title}</p>}
     <label>
      url
      <input
-      type="text"
+      type="url"
       value={url}
       onChange={(e) => setUrl(e.target.value)}
       required
      />
     </label>
-    {errors.url && <p>{errors.url}</p>}
+    {errors.url && <p className="error-message">{errors.url}</p>}
 
     <button className="submit-btn" type="submit">
      {formType === "Add" ? "Add" : "Update"}

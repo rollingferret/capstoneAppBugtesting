@@ -42,67 +42,72 @@ function CommentCurrent() {
  //  else
  return (
   <>
-   <div className="CommentCurrent-page-title">Manage Your Comments</div>
-   <div>
-    {comments.length !== 0 &&
-     comments.map((comment) => {
-      return (
-       <div key={comment?.id} className="CommentCurrent-comment-container">
-        <div
-         style={{
-          backgroundImage: `url(${comment?.photo?.url})`,
-          width: "250px",
-          height: "200px",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-         }}
-        >
-         {/* <img src={`${comment.photo.url}`}></img> */}
-        </div>
-        <div className="CommentCurrent-comment-box">
-         <div className="comment-current-title">{comment?.photo?.title}</div>
-         <div className="comment-current-item">{comment?.comment}</div>
-         <div className="comment-current-item-btn">
-          <OpenModalButton
-           btnclassname="OpenModal-btn "
-           buttonText={
-            <i className="fa-solid fa-pen-to-square CommentCurrent-btn"></i>
-           }
-           modalComponent={
-            <AddEditCommentFormModal formType={"Edit"} comment={comment} />
-           }
-          />
-          <OpenModalButton
-           btnclassname="OpenModal-btn "
-           buttonText={
-            <i className="fa-solid fa-trash-can CommentCurrent-btn"></i>
-           }
-           modalComponent={<DeleteCommentFormModal comment={comment} />}
-          />
+   <div className="CommentCurrent-outer-container">
+    <div className="CommentCurrent-inner-container">
+     <div className="CommentCurrent-page-title">Manage Your Comments</div>
+     <div className="CommentCurrent-comment-container">
+      {comments.length !== 0 &&
+       comments.map((comment) => {
+        return (
+         <div key={comment?.id} className="CommentCurrent-comment-outer-box">
+          <div
+           className="comment-current-img"
+           style={{
+            backgroundImage: `url(${comment?.photo?.url})`,
+            //   width: "250px",
+            //   height: "200px",
+            //   backgroundSize: "cover",
+            //   backgroundPosition: "center",
+           }}
+          >
+           {/* <img src={`${comment?.photo?.url}`}></img> */}
+          </div>
+          <div className="CommentCurrent-comment-box">
+           <div className="comment-current-title">{comment?.photo?.title}</div>
+           <div className="comment-current-item">{comment?.comment}</div>
+           <div className="comment-current-item-btn">
+            <OpenModalButton
+             btnclassname="OpenModal-btn "
+             buttonText={
+              <i className="fa-solid fa-pen-to-square CommentCurrent-btn"></i>
+             }
+             modalComponent={
+              <AddEditCommentFormModal formType={"Edit"} comment={comment} />
+             }
+            />
+            <OpenModalButton
+             btnclassname="OpenModal-btn "
+             buttonText={
+              <i className="fa-solid fa-trash-can CommentCurrent-btn"></i>
+             }
+             modalComponent={<DeleteCommentFormModal comment={comment} />}
+            />
+           </div>
+          </div>
          </div>
+        );
+       })}
+      {comments.length === 0 && (
+       <>
+        <div className="comment-current-item-coming"> Add your comments!</div>
+        <div>
+         <NavLink
+          style={{
+           paddingLeft: "30px",
+           alignSelf: "start",
+           display: "block",
+           textDecoration: "none",
+          }}
+          to="/photos/gallery"
+         >
+          {" "}
+          Gallery
+         </NavLink>
         </div>
-       </div>
-      );
-     })}
-    {comments.length === 0 && (
-     <>
-      <div className="comment-current-item-coming"> Add your comments!</div>
-      <div>
-       <NavLink
-        style={{
-         paddingLeft: "30px",
-         alignSelf: "start",
-         display: "block",
-         textDecoration: "none",
-        }}
-        to="/photos/gallery"
-       >
-        {" "}
-        Gallery
-       </NavLink>
-      </div>
-     </>
-    )}
+       </>
+      )}
+     </div>
+    </div>
    </div>
   </>
  );

@@ -11,7 +11,8 @@ const validateAddComment = [
  //checkFalsy: if true, fields with falsy values (eg "", 0, false, null) will also not exist
  check("comment")
   .exists({ checkFalsy: true })
-  .withMessage("Comment is required."),
+  .isLength({ min: 4, max: 100 })
+  .withMessage("Please provide a comment between 4 to 100 characters."),
  handleValidationErrors,
 ];
 

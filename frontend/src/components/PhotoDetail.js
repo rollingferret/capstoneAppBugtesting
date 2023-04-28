@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
-import { ThunkLoadAllCurrentPhotos } from "../store/photos";
+import { ThunkLoadAllPhotos } from "../store/photos";
 import { ThunkLoadAllCommentByPhoto } from "../store/comments";
 import MidNav from "./MidNav";
 
@@ -14,7 +14,7 @@ function PhotoDetail() {
  console.log("PhotoDetail PhotoId: ", photoId);
  const thePhotoId = parseInt(photoId);
  //setPhoto_id(thePhotoId);
- const return_photos = useSelector((state) => state.photos.allcurrent);
+ const return_photos = useSelector((state) => state.photos.allPhotos);
  const photo = return_photos[thePhotoId];
  const return_comments = useSelector((state) => state.comments.commentsByPhoto);
  console.log("PhotoDetail return_comments: ", return_comments);
@@ -22,7 +22,7 @@ function PhotoDetail() {
  const comments = Object.values(return_comments);
  console.log("PhotoDetail comments: ", comments);
  useEffect(() => {
-  dispatch(ThunkLoadAllCurrentPhotos());
+  dispatch(ThunkLoadAllPhotos());
  }, [dispatch]);
 
  useEffect(() => {
@@ -68,7 +68,7 @@ function PhotoDetail() {
       backgroundImage: `url(${photo?.url})`,
      }}
     >
-     photo detail
+     {/* photo detail */}
     </div>
    </div>
    <div className="PhotoDetail-comments-container">

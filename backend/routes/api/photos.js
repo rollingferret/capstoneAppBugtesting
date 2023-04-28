@@ -12,8 +12,14 @@ const router = express.Router();
 // ...
 const validateAddPhoto = [
  //checkFalsy: if true, fields with falsy values (eg "", 0, false, null) will also not exist
- check("title").exists({ checkFalsy: true }).withMessage("Title is required."),
- check("url").exists({ checkFalsy: true }).withMessage("Url is required."),
+ check("title")
+  .exists({ checkFalsy: true })
+  .isLength({ min: 4, max: 30 })
+  .withMessage("Please provide a title between 4 to 30 characters."),
+ check("url")
+  .isLength({ max: 256 })
+  .exists({ checkFalsy: true })
+  .withMessage("Please provide a url between 4 to 256 characters."),
  handleValidationErrors,
 ];
 

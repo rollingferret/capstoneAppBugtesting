@@ -19,23 +19,27 @@ const validateSignup = [
   .exists({ checkFalsy: true })
   .isEmail()
   .withMessage("Please provide a valid email."),
+ check("email")
+  .exists({ checkFalsy: true })
+  .isLength({ max: 30 })
+  .withMessage("Please provide a email no more than 30 characters."),
  check("username")
   .exists({ checkFalsy: true })
-  .isLength({ min: 4 })
-  .withMessage("Please provide a username with at least 4 characters."),
+  .isLength({ min: 4, max: 30 })
+  .withMessage("Please provide a username between 4 to 30 characters."),
  check("firstname")
   .exists({ checkFalsy: true })
-  .isLength({ min: 2 })
-  .withMessage("Please provide a firstname with at least 4 characters."),
+  .isLength({ min: 2, max: 30 })
+  .withMessage("Please provide a firstname between 4 to 30 characters."),
  check("lastname")
   .exists({ checkFalsy: true })
-  .isLength({ min: 2 })
-  .withMessage("Please provide a lastname with at least 4 characters."),
+  .isLength({ min: 2, max: 30 })
+  .withMessage("Please provide a lastname between 4 to 30 characters."),
  check("username").not().isEmail().withMessage("Username cannot be an email."),
  check("password")
   .exists({ checkFalsy: true })
-  .isLength({ min: 6 })
-  .withMessage("Password must be 6 characters or more."),
+  .isLength({ min: 6, max: 30 })
+  .withMessage("Please provide a password between 6 to 30 characters."),
  handleValidationErrors,
 ];
 
@@ -60,6 +64,8 @@ router.post("", validateSignup, async (req, res) => {
   firstname: user.firstname,
   lastname: user.lastname,
   username: user.username,
+  createdAt: user.createdAt,
+  updatedAt: user.updatedAt,
  };
 
  await setTokenCookie(res, safeUser);

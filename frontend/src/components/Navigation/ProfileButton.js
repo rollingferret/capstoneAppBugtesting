@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import OpenModalMenuItem from "../OpenModalMenuItem";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
 
 function ProfileButton({ user }) {
  const history = useHistory();
@@ -51,13 +48,17 @@ function ProfileButton({ user }) {
    <div className={ulClassName} ref={ulRef}>
     {/* {user && ( */}
     <>
-     <div>{user?.username}</div>
-     <div>
+     <div className="profile-dropdown-item">{user?.username}</div>
+     <div className="profile-dropdown-item">
       {user?.firstname} {user?.lastname}
      </div>
-     <div>{user?.email}</div>
+     <div className="profile-dropdown-item">{user?.email}</div>
      <div>
-      <button className="profile-btn-log-out-btn" onClick={logout}>
+      <button
+       className="profile-btn-log-out-btn profile-dropdown-item"
+       disabled={!user}
+       onClick={logout}
+      >
        Log Out
       </button>
      </div>
