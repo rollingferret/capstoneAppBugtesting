@@ -14,7 +14,7 @@ const router = express.Router();
 // backend/routes/api/users.js
 // ...
 const validateSignup = [
- //checkFalsy: if true, fields with falsy values (eg "", 0, false, null) will also not exis
+ //checkFalsy: if true, fields with falsy values (eg "", 0, false, null) will also not exist
  check("email")
   .exists({ checkFalsy: true })
   .isEmail()

@@ -54,6 +54,9 @@ function Photos({ user }) {
    </div>
    <div className="photo-current-photolist-container">
     {!!photos && <PhotoList photos={photos} user={user} type="photo" />}
+    {photos.length === 0 && (
+     <div className="photos-add-more-photo">Please add photos!</div>
+    )}
    </div>
    <BottomBanner />
   </>

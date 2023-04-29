@@ -55,7 +55,7 @@ router.put(
   if (currentUserId !== userId) {
    res.status(401);
    return res.json({
-    message: "Not your booking. Please try other booking numbers.",
+    message: "Not your comment. Please try other comment numbers.",
     statusCode: 401,
    });
   }

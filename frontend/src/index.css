@@ -9,11 +9,13 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
+
 }
 
 body {
   font-family: "Rubik", sans-serif;
   font-weight: 400;
+  position: relative;
 }
 
 button {
@@ -399,6 +401,10 @@ input {
   bottom: 50px;
 }
 
+.photos-add-more-photo {
+  margin: 120px 120px;
+}
+
 
 
 /* ************** */
@@ -416,8 +422,8 @@ input {
 }
 
 .PhotoDetail-show-container {
-  width: 750px;
-  height: 600px;
+  width: 700px;
+  height: 560px;
   background-size: cover;
   background-position: center;
 }
@@ -481,8 +487,8 @@ input {
 }
 
 .ImageSlider-parent-container {
-  width: 750px;
-  height: 600px;
+  width: 650px;
+  height: 520px;
   margin: 0 auto;
   background-color: black;
 }
