@@ -34,7 +34,7 @@ function App() {
     )}
     {isLoaded && (
      <Route path="/photos/:photoId">
-      <PhotoDetail />
+      <PhotoDetail type="photos" />
      </Route>
     )}
     {isLoaded && (

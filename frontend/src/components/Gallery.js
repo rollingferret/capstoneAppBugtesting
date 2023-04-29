@@ -20,6 +20,9 @@ function Gallery({ user }) {
  if (!return_photos) return null;
  return (
   <>
+   <div className="page-title">
+    <h3>Gallery</h3>
+   </div>
    <div className="gallery-photolist-container">
     {!!photos && <PhotoList photos={photos} user={user} type="gallery" />}
    </div>

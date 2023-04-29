@@ -24,17 +24,6 @@ function Navigation({ isLoaded }) {
   <div className="whole-screen">
    <div className="navigation-nav-bar">
     <div className="navigation-nav-home">
-     {/* <NavLink
-      style={{
-       textDecoration: "none",
-       color: "white",
-       fontSize: "16pt",
-       // color: "#00525E",
-       //fontWeight: "bolder",
-      }}
-      exact
-      to="/"
-     > */}
      <span>
       <img
        className="nav-bar-logo"
@@ -42,7 +31,6 @@ function Navigation({ isLoaded }) {
       />
      </span>
      &#160; &#160;Imagecfr
-     {/* </NavLink> */}
      {sessionUser && <YouButton />}
     </div>
     {isLoaded && (
@@ -63,10 +51,10 @@ function Navigation({ isLoaded }) {
         Already a Imagecfr member?
        </span>
        <button
-        className="signup-login-switch-item"
+        className="signup-login-switch-item-btn"
         onClick={() => setFormType("login")}
        >
-        Login here
+        &#160;Login here
        </button>
       </div>
      </div>
@@ -79,10 +67,10 @@ function Navigation({ isLoaded }) {
       <div>
        <span className="signup-login-switch-item">Not a Imagecfr member?</span>
        <button
-        className="signup-login-switch-item"
+        className="signup-login-switch-item-btn"
         onClick={() => setFormType("signup")}
        >
-        Sign up here
+        &#160;Sign up here
        </button>
       </div>
      </div>

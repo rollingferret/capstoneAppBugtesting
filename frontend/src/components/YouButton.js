@@ -45,6 +45,7 @@ function YouButton({ user }) {
         textDecoration: "none",
         fontSize: "14pt",
         color: "black",
+        fontWeight: "500",
        }}
        to="/photos/gallery"
       >
@@ -59,6 +60,7 @@ function YouButton({ user }) {
         textDecoration: "none",
         fontSize: "14pt",
         color: "black",
+        fontWeight: "500",
        }}
        to="/photos/current"
       >
@@ -74,6 +76,7 @@ function YouButton({ user }) {
         textDecoration: "none",
         fontSize: "14pt",
         color: "black",
+        fontWeight: "500",
        }}
        to="/comments/current"
       >

@@ -10,8 +10,8 @@ function PhotoTile({ photo, user }) {
    style={{
     position: "relative",
     backgroundImage: `url(${photo?.url})`,
-    width: "350px",
-    height: "280px",
+    width: "300px",
+    height: "240px",
     backgroundSize: "cover",
     backgroundPosition: "center",
    }}

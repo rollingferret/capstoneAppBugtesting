@@ -41,6 +41,9 @@ function Photos({ user }) {
    </div>
    <MidNav />
    <div className="photo-current-create-photo-row ">
+    <div className="page-title">
+     <h3>Photostream</h3>
+    </div>
     <div className="photo-current-new-photo ">
      <OpenModalButton
       btnclassname="OpenModal-btn"
