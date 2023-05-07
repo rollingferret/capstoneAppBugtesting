@@ -30,10 +30,10 @@ function Navigation({ isLoaded }) {
        src="https://www.transformationmarketing.com/wp-content/uploads/2020/01/color-wheel.jpg"
       />
      </span>
-     &#160; &#160;Imagecfr
+     &#160; &#160;Imageckr
      {sessionUser && <YouButton />}
     </div>
-    {isLoaded && (
+    {sessionUser && (
      <>
       <div className="navigation-nav-dropdown-parent">
        <ProfileButton user={sessionUser} />

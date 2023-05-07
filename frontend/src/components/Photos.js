@@ -6,8 +6,11 @@ import AddEditPhotoFormModal from "./AddEditPhotoFormModal";
 import OpenModalButton from "./OpenModalButton";
 import MidNav from "./MidNav";
 import BottomBanner from "./BottomBanner";
+import { Redirect } from "react-router-dom";
 
 function Photos({ user }) {
+ console.log({ user });
+ if (user === null) <Redirect to="/" />;
  //console.log("first line of Photos user", user);
  const dispatch = useDispatch();
  const return_photos = useSelector((state) => state.photos.allcurrent);
