@@ -20,6 +20,8 @@ app.use(morgan("dev"));
 
 //Add the cookie-parser middleware for parsing cookies and the express.json middleware for parsing JSON bodies of requests with Content-Type of "application/json".
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
+// This option allows to choose between parsing the URL-encoded data with the querystring library (when false) or the qs library (when true).
 app.use(express.json());
 
 // Security Middleware
