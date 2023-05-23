@@ -1,7 +1,33 @@
 const AWS = require("aws-sdk");
 const multer = require("multer");
+
+AWS.config.update({
+ signatureVersion: "v4",
+ region: "us-west-1", // Specify the correct region here
+});
+//If you use an incorrect signature version, you will not be able to authenticate your requests to AWS services 4.
+
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
-const NAME_OF_BUCKET = "happyappbucket"; // <-- Use your bucket name here
+const NAME_OF_BUCKET = "imgappbucket"; // <-- Use your bucket name here
+
+const singleFileDelete = async (key) => {
+ const params = {
+  Bucket: NAME_OF_BUCKET,
+  Key: key,
+ };
+ s3
+  .deleteObject(params)
+  .promise()
+  .then(() => {
+   console.log("S3 File deleted successfully");
+  })
+  .catch((err) => {
+   console.log("lalala");
+   console.log(err);
+   return err;
+  });
+};
+
 // backend/awsS3.js
 
 const singleFileUpload = async ({ file, public = false }) => {
@@ -43,7 +69,8 @@ const retrievePrivateFile = (key) => {
  }
  return fileUrl || key;
 };
-// backend/awsS3.js
+
+// store the file in memory
 
 const storage = multer.memoryStorage({
  destination: function (req, file, callback) {
@@ -58,6 +85,7 @@ const multipleMulterUpload = (nameOfKey) =>
 
 module.exports = {
  s3,
+ singleFileDelete,
  singleFileUpload,
  multipleFilesUpload,
  retrievePrivateFile,

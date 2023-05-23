@@ -4,6 +4,7 @@ const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const photosRouter = require("./photos.js");
 const commentsRouter = require("./comments.js");
+const imagesRouter = require("./images.js");
 
 // backend/routes/api/index.js
 // GET /api/restore-user
@@ -40,6 +41,8 @@ router.use("/users", usersRouter);
 router.use("/photos", photosRouter);
 
 router.use("/comments", commentsRouter);
+
+router.use("/images", imagesRouter);
 
 //
 router.post("/test", (req, res) => {

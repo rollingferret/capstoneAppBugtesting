@@ -53,7 +53,7 @@ function CommentCurrent() {
           <div
            className="comment-current-img"
            style={{
-            backgroundImage: `url(${comment?.photo?.url})`,
+            backgroundImage: `url(${comment?.photo?.imageUrl})`,
             //   width: "250px",
             //   height: "200px",
             //   backgroundSize: "cover",

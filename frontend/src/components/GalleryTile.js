@@ -9,21 +9,29 @@ function GalleryTile({ photo, user }) {
   <div className="phototile">
    <NavLink exact to={`/photos/${photo?.id}`}>
     <div
-     style={{
-      backgroundImage: `url(${photo?.url})`,
-      height: "200px",
-      width: "250px",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      position: "absolute",
-      top: "0",
-     }}
+    //  style={{
+    //   backgroundImage: `url(${photo?.imageUrl})`,
+    //   height: "200px",
+    //   width: "250px",
+    //   backgroundSize: "cover",
+    //   backgroundPosition: "center",
+    //   position: "absolute",
+    //   top: "0",
+    //  }}
     >
-     {/* <img
-    src={`${photo?.url}`}
-    style={{ height: "200px" }}
-    alt="imported by author"
-   /> */}
+     <img
+      key={photo?.imageUrl}
+      src={`${photo?.imageUrl}`}
+      style={{
+       height: "200px",
+       width: "250px",
+       backgroundSize: "cover",
+       backgroundPosition: "center",
+       position: "absolute",
+       top: "0",
+      }}
+      alt="imported by author"
+     />
     </div>
    </NavLink>
    <div className="gallery-box">

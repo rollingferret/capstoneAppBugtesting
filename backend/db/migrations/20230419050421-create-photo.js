@@ -20,9 +20,9 @@ module.exports = {
      allowNull: false,
      type: Sequelize.STRING,
     },
-    url: {
-     allowNull: false,
+    key: {
      type: Sequelize.STRING,
+     allowNull: false,
     },
     ownerId: {
      type: Sequelize.INTEGER,

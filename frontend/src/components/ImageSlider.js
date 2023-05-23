@@ -25,7 +25,7 @@ const ImageSlider = ({ thePhotos, index, setPhoto_id }) => {
   height: "100%",
   backgroundSize: "cover",
   backgroundPosition: "center",
-  backgroundImage: `url(${photo?.url})`,
+  backgroundImage: `url(${photo?.imageUrl})`,
  };
 
  const leftArrowStyles = {
@@ -82,7 +82,7 @@ const ImageSlider = ({ thePhotos, index, setPhoto_id }) => {
  //   setCurrentIndex(idx);
  //  };
 
- console.log(`ImageSlider:url(${photo?.url})`);
+ console.log(`ImageSlider:url(${photo?.imageUrl})`);
 
  return (
   <>

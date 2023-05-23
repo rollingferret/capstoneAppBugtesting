@@ -9,10 +9,17 @@ export async function csrfFetch(url, options = {}) {
 
  // if the options.method is not 'GET', then set the "Content-Type" header to
  // "application/json", and set the "XSRF-TOKEN" header to the value of the
+ //You will be using fetch for this example. To send files, the Content-Type Header must be "multipart/form-data". In your custom fetch function, csrfFetch, in the csrf.js file you have these lines of code:
+
+ // options.headers["Content-Type"] =
+ //   options.headers["Content-Type"] || "application/json";
+ // By adding formData to the body of your request, the browser will automatically set the appropriate headers and boundaries so you need to remove the Content-Type header if it is multipart/form-data.
+
  // "XSRF-TOKEN" cookie
  if (options.method.toUpperCase() !== "GET") {
-  options.headers["Content-Type"] =
-   options.headers["Content-Type"] || "application/json";
+  if (!options.headers["Content-Type"] && !(options.body instanceof FormData)) {
+   options.headers["Content-Type"] = "application/json";
+  }
   options.headers["XSRF-Token"] = Cookies.get("XSRF-TOKEN");
  }
  // call the default window's fetch with the url and the options passed in

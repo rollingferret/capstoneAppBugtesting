@@ -54,10 +54,13 @@ export const ThunkLoadAllPhotos = () => async (dispatch) => {
 };
 
 export const ThunkCreateAPhoto = (data) => async (dispatch) => {
+ const { title, image } = data;
+ const formData = new FormData();
+ formData.append("title", title);
+ formData.append("image", image);
  const res = await csrfFetch("/api/photos/", {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data),
+  body: formData,
  });
 
  if (res.ok) {
@@ -70,10 +73,13 @@ export const ThunkCreateAPhoto = (data) => async (dispatch) => {
 };
 
 export const ThunkUpdateAPhoto = (data, photoId) => async (dispatch) => {
+ const { title, image } = data;
+ const formData = new FormData();
+ formData.append("title", title);
+ formData.append("image", image);
  const res = await csrfFetch(`/api/photos/${photoId}`, {
   method: "PUT",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data),
+  body: formData,
  });
 
  if (res.ok) {

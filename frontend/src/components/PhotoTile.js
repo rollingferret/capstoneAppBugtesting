@@ -9,13 +9,26 @@ function PhotoTile({ photo, user }) {
   <div
    style={{
     position: "relative",
-    backgroundImage: `url(${photo?.url})`,
+    backgroundImage: `url(${photo?.imageUrl})`,
     width: "300px",
     height: "240px",
     backgroundSize: "cover",
     backgroundPosition: "center",
    }}
   >
+   {/* <img
+    key={photo?.imageUrl}
+    src={`${photo?.imageUrl}`}
+    style={{
+     height: "200px",
+     width: "250px",
+     backgroundSize: "cover",
+     backgroundPosition: "center",
+     position: "absolute",
+     top: "0",
+    }}
+    alt="imported by author"
+   /> */}
    <NavLink exact to={`/photos/${photo?.id}`}>
     <div
      style={{

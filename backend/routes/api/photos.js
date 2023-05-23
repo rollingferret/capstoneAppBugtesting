@@ -1,4 +1,14 @@
 // ...
+
+const {
+ singleFileDelete,
+ singleFileUpload,
+ multipleFilesUpload,
+ retrievePrivateFile,
+ singleMulterUpload,
+ multipleMulterUpload,
+} = require("../../awsS3");
+
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 // ...
@@ -16,10 +26,10 @@ const validateAddPhoto = [
   .exists({ checkFalsy: true })
   .isLength({ min: 4, max: 30 })
   .withMessage("Please provide a title between 4 to 30 characters."),
- check("url")
-  .isLength({ max: 256 })
-  .exists({ checkFalsy: true })
-  .withMessage("Please provide a url between 4 to 256 characters."),
+ //  check("url")
+ //   .isLength({ max: 256 })
+ //   .exists({ checkFalsy: true })
+ //   .withMessage("Please provide a url between 4 to 256 characters."),
  handleValidationErrors,
 ];
 
@@ -28,9 +38,10 @@ router.get("/", async (req, res, next) => {
  const allPhotos = await Photo.findAll();
  let photos = [];
  allPhotos.forEach((photo) => {
-  photos.push(photo.toJSON());
+  let imageUrl = retrievePrivateFile(photo.key);
+  let thePhoto = { ...photo.toJSON(), imageUrl };
+  photos.push(thePhoto);
  });
- console.log("********photos: ", photos);
  return res.json(photos);
 });
 
@@ -44,9 +55,10 @@ router.get("/current", requireAuth, async (req, res, next) => {
  const allPhotos = await Photo.findAll({ where });
  let photos = [];
  allPhotos.forEach((photo) => {
-  photos.push(photo.toJSON());
+  let imageUrl = retrievePrivateFile(photo.key);
+  let thePhoto = { ...photo.toJSON(), imageUrl };
+  photos.push(thePhoto);
  });
- console.log("********photos: ", photos);
  return res.json(photos);
 });
 
@@ -56,31 +68,45 @@ router.get("/:photoId", requireAuth, async (req, res, next) => {
 
  //console.log("photoId: ", photoId);
  const photo = await Photo.findByPk(parseInt(photoId));
+ let imageUrl = retrievePrivateFile(photo.key);
+ let thePhoto = { ...photo.toJSON(), imageUrl };
  //console.log("photo: ", photo);
- return res.json(photo);
+ return res.json(thePhoto);
 });
 
-//Create a photo owned by current User
-router.post("/", requireAuth, validateAddPhoto, async (req, res, next) => {
- const currentUser = req.user;
- const ownerId = parseInt(currentUser.id);
- //console.log("ownerId: ", ownerId);
- const { title, url } = req.body;
- //console.log({ title, url });
- const newPhoto = await Photo.create({
-  title,
-  url,
-  ownerId,
- });
+//#Create a photo owned by current User
+router.post(
+ "/",
+ singleMulterUpload("image"),
+ requireAuth,
+ validateAddPhoto,
+ async (req, res, next) => {
+  const currentUser = req.user;
+  let ownerId = parseInt(currentUser.id);
+  //console.log("ownerId: ", ownerId);
+  let key = await singleFileUpload({ file: req.file });
+  let { title } = req.body;
 
- //console.log("newPhoto: ", newPhoto);
- res.status(201);
- return res.json(newPhoto);
-});
+  let newPhoto = await Photo.create({
+   title,
+   key,
+   ownerId,
+  });
+
+  //console.log("newPhoto: ", newPhoto);
+  const imageUrl = retrievePrivateFile(newPhoto.key);
+  //const { id, updatedAt, createdAt } = newPhoto;
+  //const photo = { id, title, key, ownerId, imageUrl, updatedAt, createdAt };
+  const photo = { ...newPhoto.toJSON(), imageUrl };
+  res.status(201);
+  return res.json(photo);
+ }
+);
 
 //update a photo owned by current User
 router.put(
  "/:photoId",
+ singleMulterUpload("image"),
  requireAuth,
  validateAddPhoto,
  async (req, res, next) => {
@@ -88,20 +114,25 @@ router.put(
   //const ownerId = parseInt(currentUser.id);
   //console.log("ownerId: ", ownerId);
   const { photoId } = req.params;
-  const { title, url } = req.body;
+  const key = await singleFileUpload({ file: req.file });
+  const { title } = req.body;
   //console.log({ title, url });
   const thePhoto = await Photo.findByPk(photoId);
   //console.log("thePhoto: ", thePhoto);
 
   thePhoto.set({
    title,
-   url,
+   key,
   });
 
   await thePhoto.save();
 
+  const imageUrl = retrievePrivateFile(thePhoto.key);
+
+  const photo = { ...thePhoto.toJSON(), imageUrl };
+
   res.status(201);
-  return res.json(thePhoto);
+  return res.json(photo);
  }
 );
 
@@ -121,8 +152,13 @@ router.delete("/:photoId", requireAuth, async (req, res, next) => {
   });
  }
 
+ const err = await singleFileDelete(thePhoto.key);
+ if (err) {
+  res.status(400);
+  return res.json(err);
+ }
  await thePhoto.destroy();
- res.status(200);
+ console.log("hahaha");
  return res.json({
   message: "Successfully deleted",
   statusCode: 200,

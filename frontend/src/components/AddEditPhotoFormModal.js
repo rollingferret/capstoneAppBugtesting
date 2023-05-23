@@ -10,18 +10,24 @@ import {
 function AddEditPhotoFormModal({ formType, photo }) {
  const dispatch = useDispatch();
  const [title, setTitle] = useState("");
- const [url, setUrl] = useState("");
+ const [image, setImage] = useState(null);
  const [errors, setErrors] = useState({});
  const { closeModal } = useModal();
 
- function isImgUrl(url_) {
-  const img = new Image();
-  img.src = url_;
-  return new Promise((resolve) => {
-   img.onload = () => resolve(true);
-   img.onerror = () => resolve(false);
-  });
- }
+ // function isImgUrl(url_) {
+ //  const img = new Image();
+ //  img.src = url_;
+ //  return new Promise((resolve) => {
+ //   img.onload = () => resolve(true);
+ // //if the onload event of the Image object is fired, indicating that the image has been successfully loaded
+ //   img.onerror = () => resolve(false);
+ // //if the onerror event is fired, indicating that there was an error loading the image.
+ //  });
+ // }
+ const updateFile = (e) => {
+  const file = e.target.files[0];
+  if (file) setImage(file);
+ };
 
  const return_photos = useSelector((state) => state.photos.allcurrent);
  useEffect(() => {
@@ -35,21 +41,21 @@ function AddEditPhotoFormModal({ formType, photo }) {
  useEffect(() => {
   if (formType === "Edit" && thePhoto !== null) {
    setTitle(thePhoto?.title);
-   setUrl(thePhoto?.url);
+   //  setUrl(thePhoto?.url);
   }
  }, [formType, thePhoto]);
 
  const handleSubmit = async (e) => {
   e.preventDefault();
   setErrors({});
-  let isImageUrl;
-  await isImgUrl(url).then((res) => (isImageUrl = res));
-  if (!isImageUrl) return setErrors({ url: "Not valid image url" });
+  // let isImageUrl;
+  // await isImgUrl(url).then((res) => (isImageUrl = res));
+  // if (!isImageUrl) return setErrors({ url: "Not valid image url" });
   if (formType === "Add") {
    return dispatch(
     ThunkCreateAPhoto({
      title,
-     url,
+     image,
     })
    )
     .then(closeModal)
@@ -65,7 +71,7 @@ function AddEditPhotoFormModal({ formType, photo }) {
     ThunkUpdateAPhoto(
      {
       title,
-      url,
+      image,
      },
      thePhoto.id
     )
@@ -99,13 +105,14 @@ function AddEditPhotoFormModal({ formType, photo }) {
     </label>
     {errors.title && <p className="error-message">{errors.title}</p>}
     <label>
-     url
-     <input
-      type="url"
+     image
+     {/* <input
+      type="file"
       value={url}
       onChange={(e) => setUrl(e.target.value)}
       required
-     />
+     /> */}
+     <input type="file" accept=".png,.jpg,.jpeg" onChange={updateFile}></input>
     </label>
     {errors.url && <p className="error-message">{errors.url}</p>}
 

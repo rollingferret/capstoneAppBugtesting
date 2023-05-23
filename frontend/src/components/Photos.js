@@ -31,6 +31,7 @@ function Photos({ user }) {
      <img
       className="photo-logo"
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLNqpbvkqoDHq1fwkBZBA8dByg5H8O0dMnow&usqp=CAU"
+      alt="logo of the app"
      />
     </span>
     <div className="photo-current-user">
