@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
    */
   static associate(models) {
    // define association here
+   Album.hasMany(models.AlbumPhoto, {
+    foreignKey: "albumId",
+    onDelete: "CASCADE",
+    hooks: true,
+   });
+
    Album.belongsTo(models.User, {
     as: "Owner",
     foreignKey: "ownerId",
@@ -20,16 +26,22 @@ module.exports = (sequelize, DataTypes) => {
    name: {
     allowNull: false,
     type: DataTypes.STRING(30),
+    validate: {
+     len: [2, 30],
+    },
    },
    category: {
-    allowNull: false,
     type: DataTypes.STRING(30),
+    validate: {
+     len: [2, 30],
+    },
    },
    createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
    },
    ownerId: {
+    allowNull: false,
     type: DataTypes.INTEGER,
    },
   },
