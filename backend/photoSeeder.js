@@ -2,6 +2,8 @@ const AWS = require("aws-sdk");
 //const multer = require("multer");
 
 AWS.config.update({
+ //accessKeyId: "",
+ //secretAccessKey:"",
  signatureVersion: "v4",
  region: "us-west-1", // Specify the correct region here
 });
