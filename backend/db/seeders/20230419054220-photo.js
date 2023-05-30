@@ -92,6 +92,126 @@ module.exports = {
      key: "bird-dance.jpg",
      ownerId: 2,
     },
+    {
+     title: "bird-perch",
+     key: "bird-perch.jpg",
+     ownerId: 1,
+    },
+    {
+     title: "light-house",
+     key: "light-house.jpg",
+     ownerId: 2,
+    },
+    {
+     title: "rock-cliff",
+     key: "rock-cliff.jpg",
+     ownerId: 3,
+    },
+    {
+     title: "stalking-cat",
+     key: "stalking-cat.jpg",
+     ownerId: 4,
+    },
+    {
+     title: "watching-cat",
+     key: "watching-cat.jpg",
+     ownerId: 5,
+    },
+    {
+     title: "old-tree",
+     key: "old-tree.jpg",
+     ownerId: 6,
+    },
+    {
+     title: "sparrow-hawk",
+     key: "sparrow-hawk.jpg",
+     ownerId: 1,
+    },
+    {
+     title: "Milky-Way-Mandu-Gorge",
+     key: "Milky-Way-Mandu-Gorge.jpg",
+     ownerId: 2,
+    },
+    {
+     title: "water-games",
+     key: "water-games.jpg",
+     ownerId: 3,
+    },
+    {
+     title: "field",
+     key: "field.jpg",
+     ownerId: 4,
+    },
+    {
+     title: "ladybugs",
+     key: "ladybugs.jpg",
+     ownerId: 5,
+    },
+    {
+     title: "lonely-island",
+     key: "lonely-island.jpg",
+     ownerId: 6,
+    },
+    {
+     title: "duck-head",
+     key: "duck-head.jpg",
+     ownerId: 1,
+    },
+    {
+     title: "dragonfly",
+     key: "dragonfly.jpg",
+     ownerId: 2,
+    },
+    {
+     title: "Italie-fontaine",
+     key: "Italie-fontaine.jpg",
+     ownerId: 3,
+    },
+    {
+     title: "roadside-hawk",
+     key: "roadside-hawk.jpg",
+     ownerId: 4,
+    },
+    {
+     title: "historic-hotel",
+     key: "historic-hotel.jpg",
+     ownerId: 5,
+    },
+    {
+     title: "Tribune-Tower",
+     key: "Tribune-Tower.jpg",
+     ownerId: 6,
+    },
+    {
+     title: "Tower-of-London",
+     key: "Tower-of-London.jpg",
+     ownerId: 1,
+    },
+    {
+     title: "historic-Pothole",
+     key: "historic-Pothole.jpg",
+     ownerId: 2,
+    },
+    {
+     title: "historic-springfield-cruise",
+     key: "historic-springfield-cruise.jpg",
+     ownerId: 3,
+    },
+    {
+     title: "play-ball-dog",
+     key: "play-ball-dog.jpg",
+     ownerId: 4,
+    },
+    {
+     title: "dog-friendship",
+     key: "dog-friendship.jpg",
+     ownerId: 5,
+    },
+    {
+     title: "dog-king",
+     key: "dog-king.jpg",
+     ownerId: 6,
+    },
    ],
    {}
   );
