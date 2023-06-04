@@ -78,13 +78,29 @@ function YouButton({ user }) {
         color: "black",
         fontWeight: "500",
        }}
+       to="/albums/current"
+      >
+       {" "}
+       Albums
+      </NavLink>
+     </div>
+     <div>
+      <NavLink
+       style={{
+        alignSelf: "start",
+        display: "block",
+        textDecoration: "none",
+        fontSize: "14pt",
+        color: "black",
+        fontWeight: "500",
+       }}
        to="/comments/current"
       >
        {" "}
        Comments
       </NavLink>
      </div>
-     {/* <div className="You-dropdown-item">Albums</div>
+     {/* 
      <div className="You-dropdown-item">Faves</div> */}
     </>
    </div>

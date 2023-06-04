@@ -4,6 +4,7 @@ const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const photosRouter = require("./photos.js");
 const commentsRouter = require("./comments.js");
+const albumsRouter = require("./albums.js");
 //const imagesRouter = require("./images.js");
 
 // backend/routes/api/index.js
@@ -42,7 +43,7 @@ router.use("/photos", photosRouter);
 
 router.use("/comments", commentsRouter);
 
-//router.use("/images", imagesRouter);
+router.use("/albums", albumsRouter);
 
 //
 router.post("/test", (req, res) => {

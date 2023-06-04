@@ -176,6 +176,8 @@ h3 {
 /* ************** */
 /*       form     */
 /* ************** */
+
+select,
 .submit-btn,
 label,
 textarea,
@@ -186,6 +188,11 @@ input {
   font-size: 14pt;
 }
 
+select {
+  border: 2px solid #444;
+}
+
+select,
 textarea,
 input {
   background-color: #e8f0fe;
@@ -286,6 +293,10 @@ input {
 
 }
 
+.highLighted {
+  border-bottom: 3px solid lightskyblue;
+}
+
 .photo-current-photolist-container {
   width: 88%;
   display: flex;
@@ -335,14 +346,14 @@ input {
   z-index: 3;
 }
 
-.photo-text:hover {
+.photo-box:hover .photo-text {
   cursor: pointer;
-  font-weight: 400;
+  font-weight: 500;
   color: white;
   z-index: 3;
 }
 
-.photo-tile-btn:hover {
+.photo-box:hover .photo-tile-btn {
   font-weight: 400;
   color: white;
 }
@@ -406,7 +417,18 @@ input {
   margin: 120px 120px;
 }
 
+/* ***************** */
+/*     PhotoList     */
+/*NotInAlbumPhotoTile*/
+/* ***************** */
 
+
+.PhotoList-phototile {
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* ************** */
 /*  PhotoDetail   */
@@ -730,4 +752,57 @@ a {
 
 .cancel-delete-photo-button {
   background-color: rgb(109, 109, 109);
+}
+
+/* ******************* */
+/*      AlbumEdit      */
+/* ******************* */
+
+.albumEdit-outer-container {
+  padding: 100px;
+  width: 90%;
+  margin: auto;
+  display: flex;
+}
+
+.partition1 {
+  width: 40%;
+  height: 70vh;
+  background-color: #FF5A5F;
+}
+
+.partition2 {
+  width: 20%;
+  height: 70vh;
+}
+
+.partition3 {
+  width: 40%;
+  height: 70vh;
+  background-color: darkcyan;
+}
+
+.photos-notInAlbum-container {
+  width: 90%;
+  height: 60vh;
+  background-color: lightpink;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  margin: 5vh auto;
+  gap: 0.5rem;
+}
+
+.albumEdit-btn-container {
+  width: 90%;
+  height: 60vh;
+  background-color: beige;
+}
+
+.photos-InAlbum-container {
+  width: 90%;
+  height: 60vh;
+
+  background-color: darkseagreen;
 }

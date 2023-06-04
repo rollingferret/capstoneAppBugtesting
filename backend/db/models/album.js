@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
- class Photo extends Model {
+ class Album extends Model {
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -9,50 +9,46 @@ module.exports = (sequelize, DataTypes) => {
    */
   static associate(models) {
    // define association here
-   Photo.hasMany(models.AlbumPhoto, {
-    foreignKey: "photoId",
+   Album.hasMany(models.AlbumPhoto, {
+    foreignKey: "albumId",
     onDelete: "CASCADE",
     hooks: true,
    });
-   Photo.belongsTo(models.User, {
+
+   Album.belongsTo(models.User, {
     as: "Owner",
     foreignKey: "ownerId",
    });
-
-   Photo.hasMany(models.Comment, {
-    foreignKey: "photoId",
-    onDelete: "CASCADE",
-    hooks: true,
-   });
-   //  Photo.belongsToMany(models.User, {
-   //   through: models.Comment,
-   //   foreignKey: "photoId",
-   //   otherKey: "userId",
-   //  });
   }
  }
- Photo.init(
+ Album.init(
   {
-   title: {
+   name: {
     allowNull: false,
     type: DataTypes.STRING(30),
+    validate: {
+     len: [2, 30],
+    },
    },
-   key: {
-    type: DataTypes.STRING,
-    allowNull: false,
+   category: {
+    type: DataTypes.STRING(30),
+    validate: {
+     len: [2, 30],
+    },
    },
    createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
    },
    ownerId: {
+    allowNull: false,
     type: DataTypes.INTEGER,
    },
   },
   {
    sequelize,
-   modelName: "Photo",
+   modelName: "Album",
   }
  );
- return Photo;
+ return Album;
 };

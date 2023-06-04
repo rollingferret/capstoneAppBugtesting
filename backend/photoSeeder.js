@@ -85,6 +85,102 @@ const MultipleSeedsUpload = () => {
    name: "bird-dance.jpg",
    path: filePath + "bird-dance.jpg",
   },
+  {
+   name: "bird-perch.jpg",
+   path: filePath + "bird-perch.jpg",
+  },
+  {
+   name: "light-house.jpg",
+   path: filePath + "light-house.jpg",
+  },
+  {
+   name: "rock-cliff.jpg",
+   path: filePath + "rock-cliff.jpg",
+  },
+  {
+   name: "stalking-cat.jpg",
+   path: filePath + "stalking-cat.jpg",
+  },
+  {
+   name: "watching-cat.jpg",
+   path: filePath + "watching-cat.jpg",
+  },
+  {
+   name: "old-tree.jpg",
+   path: filePath + "old-tree.jpg",
+  },
+  {
+   name: "sparrow-hawk.jpg",
+   path: filePath + "sparrow-hawk.jpg",
+  },
+  {
+   name: "Milky-Way-Mandu-Gorge.jpg",
+   path: filePath + "Milky-Way-Mandu-Gorge.jpg",
+  },
+  {
+   name: "water-games.jpg",
+   path: filePath + "water-games.jpg",
+  },
+  {
+   name: "field.jpg",
+   path: filePath + "field.jpg",
+  },
+  {
+   name: "ladybugs.jpg",
+   path: filePath + "ladybugs.jpg",
+  },
+  {
+   name: "lonely-island.jpg",
+   path: filePath + "lonely-island.jpg",
+  },
+  {
+   name: "duck-head.jpg",
+   path: filePath + "duck-head.jpg",
+  },
+  {
+   name: "dragonfly.jpg",
+   path: filePath + "dragonfly.jpg",
+  },
+  {
+   name: "Italie-fontaine.jpg",
+   path: filePath + "Italie-fontaine.jpg",
+  },
+  {
+   name: "roadside-hawk.jpg",
+   path: filePath + "roadside-hawk.jpg",
+  },
+  {
+   name: "historic-hotel.jpg",
+   path: filePath + "historic-hotel.jpg",
+  },
+  {
+   name: "Tribune-Tower.jpg",
+   path: filePath + "Tribune-Tower.jpg",
+  },
+  {
+   name: "Tower-of-London.jpg",
+   path: filePath + "Tower-of-London.jpg",
+  },
+  {
+   name: "historic-Pothole.jpg",
+   path: filePath + "historic-Pothole.jpg",
+  },
+  {
+   name: "Historic-Springfield-Cruise.jpg",
+   path: filePath + "Historic-Springfield-Cruise.jpg",
+  },
+  {
+   name: "play-ball-dog.jpg",
+   path: filePath + "play-ball-dog.jpg",
+  },
+  {
+   name: "dog-friendship.jpg",
+   path: filePath + "dog-friendship.jpg",
+  },
+  {
+   name: "dog-king.jpg",
+   path: filePath + "dog-king.jpg",
+  },
  ];
 
  console.log("files", files);
