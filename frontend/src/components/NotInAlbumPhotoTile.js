@@ -4,15 +4,15 @@ import OpenModalButton from "./OpenModalButton";
 import AddEditPhotoFormModal from "./AddEditPhotoFormModal";
 import DeletePhotoFormModal from "./DeletePhotoFormModal";
 
-function PhotoTile({ photo, user }) {
+function NotInAlbumPhotoTile({ photo, user }) {
  return (
   <div
-   className="photo-box"
+   className="Photo-box"
    style={{
     position: "relative",
     backgroundImage: `url(${photo?.imageUrl})`,
-    width: "300px",
-    height: "240px",
+    width: "120px",
+    height: "96px",
     backgroundSize: "cover",
     backgroundPosition: "center",
    }}
@@ -65,4 +65,4 @@ function PhotoTile({ photo, user }) {
   </div>
  );
 }
-export default PhotoTile;
+export default NotInAlbumPhotoTile;

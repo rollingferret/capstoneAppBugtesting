@@ -29,13 +29,22 @@ router.get("/current", async (req, res, next) => {
   include: [{ model: AlbumPhoto, include: { model: Photo } }],
  });
 
- //console.log(JSON.stringify(theAlbums, null, 2));
-
  let albums = [];
 
- theAlbums.map((album) => {
-  console.log();
-  albums.push(album.toJSON());
+ theAlbums.map((theAlbum) => {
+  let album = { ...theAlbum.toJSON() };
+  console.log("1111  album", album);
+  let albumPhotos = [];
+  album.AlbumPhotos.map((albumPhoto) => {
+   let imageUrl = retrievePrivateFile(albumPhoto.Photo.key);
+   let theAlbumPhoto = { ...albumPhoto, imageUrl };
+   albumPhotos.push(theAlbumPhoto);
+  });
+  delete album.AlbumPhotos;
+  album.AlbumPhotos = albumPhotos;
+
+  console.log("2222  album", album);
+  albums.push(album);
  });
 
  return res.json(albums);
@@ -49,10 +58,17 @@ router.get("/:albumId", async (req, res, next) => {
   //where,
   include: [{ model: AlbumPhoto, include: { model: Photo } }],
  });
+ const theAlbum = { ...album.toJSON() };
+ let albumPhotos = [];
+ theAlbum.AlbumPhotos.map((albumPhoto) => {
+  let imageUrl = retrievePrivateFile(albumPhoto.Photo.key);
+  let theAlbumPhoto = { ...albumPhoto, imageUrl };
+  albumPhotos.push(theAlbumPhoto);
+ });
+ delete theAlbum.AlbumPhotos;
+ theAlbum.AlbumPhotos = albumPhotos;
 
- //console.log(JSON.stringify(theAlbums, null, 2));
-
- return res.json(album);
+ return res.json(theAlbum);
 });
 
 //Add a new album
@@ -66,10 +82,11 @@ router.post("/", requireAuth, validateAddAlbum, async (req, res, next) => {
   category,
   ownerId: userId,
  });
+ let album = { ...newAlbum.toJSON() };
+ delete album.AlbumPhotos;
+ album.AlbumPhotos = [];
 
- //console.log(JSON.stringify(theAlbums, null, 2));
-
- return res.json(newAlbum);
+ return res.json(album);
 });
 
 //Delete a album
@@ -78,7 +95,7 @@ router.delete("/:albumId", requireAuth, async (req, res, next) => {
  const currentUser = req.user;
  const userId = parseInt(currentUser.id);
 
- const album = Album.findByPk(parseInt(albumId));
+ const album = await Album.findByPk(parseInt(albumId));
 
  if (!album) {
   res.status(404);
@@ -87,7 +104,7 @@ router.delete("/:albumId", requireAuth, async (req, res, next) => {
    statusCode: 404,
   });
  }
-
+ console.log("album, userId: ", album, userId);
  if (album.ownerId !== userId) {
   res.status(401);
   return res.json({
@@ -104,7 +121,7 @@ router.delete("/:albumId", requireAuth, async (req, res, next) => {
  });
 });
 
-//*GET ALL Current user's PHOTO not in aibum(albumId)
+//*GET ALL Current user's PHOTO not in album(albumId)
 
 router.get("/:albumId/photos/current", requireAuth, async (req, res, next) => {
  const currentUser = req.user;
@@ -179,6 +196,90 @@ router.post("/:albumId/albumPhotos", requireAuth, async (req, res, next) => {
  });
 
  res.json(albumPhoto);
+});
+
+module.exports = router;
+
+//add multiple albumPhotos by albumId
+router.post(
+ "/:albumId/multiAlbumPhotos",
+ requireAuth,
+ async (req, res, next) => {
+  const albumId = req.params.albumId;
+  const currentUser = req.user;
+  const userId = parseInt(currentUser.id);
+
+  const album = await Album.findByPk(parseInt(albumId));
+
+  if (!album) {
+   res.status(404);
+   return res.json({
+    message: "Album couldn't be found",
+    statusCode: 404,
+   });
+  }
+
+  console.log("album.ownerId, userId", album.ownerId, userId);
+
+  if (album.ownerId !== userId) {
+   res.status(401);
+   return res.json({
+    message: "Not your album. Please try other album id",
+    statusCode: 401,
+   });
+  }
+
+  const { photoIds } = req.body;
+  let albumPhotos = [];
+
+  photoIds.forEach(async (photoId) => {
+   const albumPhoto = await AlbumPhoto.create({
+    photoId,
+    albumId,
+   });
+   albumPhotos.push(albumPhoto.toJSON());
+  });
+
+  res.json(albumPhotos);
+ }
+);
+
+//delete multiple albumPhotos by albumId
+router.delete("/:albumId/albumPhotos", requireAuth, async (req, res, next) => {
+ const albumId = req.params.albumId;
+ const currentUser = req.user;
+ const userId = parseInt(currentUser.id);
+
+ const album = await Album.findByPk(parseInt(albumId));
+
+ if (!album) {
+  res.status(404);
+  return res.json({
+   message: "Album couldn't be found",
+   statusCode: 404,
+  });
+ }
+
+ console.log("album.ownerId, userId", album.ownerId, userId);
+
+ if (album.ownerId !== userId) {
+  res.status(401);
+  return res.json({
+   message: "Not your album. Please try other album id",
+   statusCode: 401,
+  });
+ }
+
+ const { albumPhotos } = req.body;
+
+ albumPhotos.forEach(async (albumPhoto) => {
+  await albumPhoto.distroy();
+ });
+
+ res.json({
+  message: "Successfully deleted",
+  statusCode: 200,
+ });
 });
 
 module.exports = router;

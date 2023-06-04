@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import photosReducer from "./photos";
 import commentsReducer from "./comments";
+import albumReducer from "./albums";
 
 //Create a rootReducer that calls combineReducers and pass in an empty object for now.
 
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
  session: sessionReducer,
  photos: photosReducer,
  comments: commentsReducer,
+ albums: albumReducer,
 });
 // ...
 

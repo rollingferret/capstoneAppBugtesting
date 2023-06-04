@@ -1,29 +1,31 @@
 import React, { useEffect } from "react";
-import PhotoList from "./PhotoList";
+import AlbumList from "./AlbumList";
 import { useDispatch, useSelector } from "react-redux";
-import { ThunkLoadAllCurrentPhotos } from "../store/photos";
-import AddEditPhotoFormModal from "./AddEditPhotoFormModal";
+import { ThunkLoadAllCurrentAlbums } from "../store/albums";
+import AddAlbumFormModal from "./AddAlbumFormModal";
 import OpenModalButton from "./OpenModalButton";
 import MidNav from "./MidNav";
 import BottomBanner from "./BottomBanner";
 import { Redirect } from "react-router-dom";
 
-function Photos({ user }) {
+function Albums({ user }) {
  console.log({ user });
  if (user === null) <Redirect to="/" />;
- //console.log("first line of Photos user", user);
+ console.log("first line of Photos user", user);
  const dispatch = useDispatch();
- const return_photos = useSelector((state) => state.photos.allcurrent);
- //  console.log("---------return_photos", return_photos);
- const photos = Object.values(return_photos);
- //const photos = [...return_photos];
+ const return_albums = useSelector((state) => state.albums.allCurrent);
+ console.log("---------return_albums", return_albums);
+ let albums;
+ if (return_albums) {
+  albums = Object.values(return_albums);
+ }
  console.log("---------user", user);
  useEffect(() => {
-  // console.log("step 3");
-  if (user) dispatch(ThunkLoadAllCurrentPhotos());
+  console.log("step 3");
+  if (user) dispatch(ThunkLoadAllCurrentAlbums());
  }, [dispatch, user]);
  console.log("step 4");
- if (!photos) return null;
+ if (!albums) return null;
  return (
   <>
    <div className="photo-current-top-cover-img">
@@ -39,31 +41,31 @@ function Photos({ user }) {
      <div>{user?.email}</div>
     </div>
     <div className="photo-current-photolength">
-     {`${photos?.length} photos`} &#160; &#160;{" "}
+     {`${albums?.length} albums`} &#160; &#160;{" "}
      {`joined ${user?.createdAt.slice(0, 4)} `}
     </div>
    </div>
-   <MidNav compo={"Photos"} />
+   <MidNav compo={"Albums"} />
    <div className="photo-current-create-photo-row ">
     <div className="page-title">
-     <h3>Photostream</h3>
+     <h3>Albums</h3>
     </div>
     <div className="photo-current-new-photo ">
      <OpenModalButton
       btnclassname="OpenModal-btn"
       buttonText={<i className="fa-solid fa-square-plus"></i>}
-      modalComponent={<AddEditPhotoFormModal formType={"Add"} photo={null} />}
+      modalComponent={<AddAlbumFormModal />}
      />
     </div>
    </div>
    <div className="photo-current-photolist-container">
-    {!!photos && <PhotoList photos={photos} user={user} type="photo" />}
-    {photos.length === 0 && (
-     <div className="photos-add-more-photo">Please add photos!</div>
+    {!!albums && <AlbumList albums={albums} user={user} />}
+    {albums.length === 0 && (
+     <div className="photos-add-more-photo">Please add Albums!</div>
     )}
    </div>
    <BottomBanner />
   </>
  );
 }
-export default Photos;
+export default Albums;

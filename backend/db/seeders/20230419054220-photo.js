@@ -193,8 +193,8 @@ module.exports = {
      ownerId: 2,
     },
     {
-     title: "historic-springfield-cruise",
-     key: "historic-springfield-cruise.jpg",
+     title: "Historic-Springfield-Cruise",
+     key: "Historic-Springfield-Cruise.jpg",
      ownerId: 3,
     },
     {

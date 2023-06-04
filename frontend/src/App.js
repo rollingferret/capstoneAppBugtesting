@@ -7,6 +7,8 @@ import Photos from "./components/Photos";
 import PhotoDetail from "./components/PhotoDetail";
 import CommentCurrent from "./components/CommentCurrent";
 import Gallery from "./components/Gallery";
+import Albums from "./components/Albums";
+import AlbumEdit from "./components/AlbumEdit";
 
 function App() {
  const dispatch = useDispatch();
@@ -35,6 +37,16 @@ function App() {
     {isLoaded && (
      <Route path="/photos/:photoId">
       <PhotoDetail type="photos" />
+     </Route>
+    )}
+    {isLoaded && (
+     <Route path="/albums/current">
+      <Albums user={sessionUser} />
+     </Route>
+    )}
+    {isLoaded && (
+     <Route path="/albums/:albumId">
+      <AlbumEdit user={sessionUser} />
      </Route>
     )}
     {isLoaded && (
