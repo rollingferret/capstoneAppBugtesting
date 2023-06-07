@@ -1,26 +1,28 @@
 const express = require("express");
-const router = express.Router();
 const { AlbumPhoto } = require("../../db/models");
 const { requireAuth } = require("../../utils/auth");
 
-//delete an albumPhoto by albumPhotoId
+const router = express.Router();
+
+//delete multiple albumPhotos by albumPhotoIds
 //no validation on photoId, albumId
-router.delete("/:albumPhotoId", requireAuth, async (req, res, next) => {
- const albumPhotoId = req.params.albumPhotoId;
+router.delete("/multiAlbumPhotos", requireAuth, async (req, res, next) => {
+ const { albumPhotoIds } = req.body;
 
- const albumPhoto = AlbumPhoto.findByPk(parseInt(albumPhotoId));
+ console.log("delete albumPhotos   albumPhotoIds: ", albumPhotoIds);
 
- if (!albumPhoto) {
-  res.status(404);
-  return res.json({
-   message: "photo couldn't be found in this album",
-   statusCode: 404,
-  });
- }
+ const promises = albumPhotoIds.map(async (albumPhotoId) => {
+  const albumPhoto = await AlbumPhoto.findByPk(albumPhotoId);
+  return albumPhoto;
+ });
 
- await albumPhoto.distroy();
+ const albumPhotos = await Promise.all(promises);
 
- res.json({
+ albumPhotos.forEach(async (albumPhoto) => {
+  await albumPhoto.destroy();
+ });
+
+ return res.json({
   message: "Successfully deleted",
   statusCode: 200,
  });

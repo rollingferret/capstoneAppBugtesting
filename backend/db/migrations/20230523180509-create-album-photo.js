@@ -37,6 +37,13 @@ module.exports = {
     defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
    },
   });
+
+  // Add a unique constraint to make photoId and albumId a unique pair
+  await queryInterface.addConstraint("AlbumPhotos", {
+   fields: ["photoId", "albumId"],
+   type: "unique",
+   name: "unique_photo_album_pair",
+  });
  },
  async down(queryInterface, Sequelize) {
   await queryInterface.dropTable("AlbumPhotos");

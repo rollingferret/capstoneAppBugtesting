@@ -205,6 +205,7 @@ router.post(
  "/:albumId/multiAlbumPhotos",
  requireAuth,
  async (req, res, next) => {
+  console.log("first line of add multiple albumPhotos by albumId api route");
   const albumId = req.params.albumId;
   const currentUser = req.user;
   const userId = parseInt(currentUser.id);
@@ -230,56 +231,32 @@ router.post(
   }
 
   const { photoIds } = req.body;
-  let albumPhotos = [];
+  // let albumPhotos = [];
 
-  photoIds.forEach(async (photoId) => {
+  // photoIds.forEach(async (photoId) => {
+  //  const albumPhoto = await AlbumPhoto.create({
+  //   photoId,
+  //   albumId,
+  //  });
+  //  console.log(albumPhoto.toJSON());
+  //  if (albumPhoto) albumPhotos.push(albumPhoto.toJSON());
+  // });
+
+  // res.json(albumPhotos);
+
+  const promises = photoIds.map(async (photoId) => {
    const albumPhoto = await AlbumPhoto.create({
     photoId,
     albumId,
    });
-   albumPhotos.push(albumPhoto.toJSON());
+   console.log(albumPhoto.toJSON());
+   return albumPhoto.toJSON();
   });
 
-  res.json(albumPhotos);
+  const albumPhotos = await Promise.all(promises);
+
+  return res.json(albumPhotos);
  }
 );
-
-//delete multiple albumPhotos by albumId
-router.delete("/:albumId/albumPhotos", requireAuth, async (req, res, next) => {
- const albumId = req.params.albumId;
- const currentUser = req.user;
- const userId = parseInt(currentUser.id);
-
- const album = await Album.findByPk(parseInt(albumId));
-
- if (!album) {
-  res.status(404);
-  return res.json({
-   message: "Album couldn't be found",
-   statusCode: 404,
-  });
- }
-
- console.log("album.ownerId, userId", album.ownerId, userId);
-
- if (album.ownerId !== userId) {
-  res.status(401);
-  return res.json({
-   message: "Not your album. Please try other album id",
-   statusCode: 401,
-  });
- }
-
- const { albumPhotos } = req.body;
-
- albumPhotos.forEach(async (albumPhoto) => {
-  await albumPhoto.distroy();
- });
-
- res.json({
-  message: "Successfully deleted",
-  statusCode: 200,
- });
-});
 
 module.exports = router;

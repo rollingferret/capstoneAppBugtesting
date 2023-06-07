@@ -5,6 +5,8 @@ const usersRouter = require("./users.js");
 const photosRouter = require("./photos.js");
 const commentsRouter = require("./comments.js");
 const albumsRouter = require("./albums.js");
+const albumPhotosRouter = require("./albumPhotos.js");
+
 //const imagesRouter = require("./images.js");
 
 // backend/routes/api/index.js
@@ -44,6 +46,8 @@ router.use("/photos", photosRouter);
 router.use("/comments", commentsRouter);
 
 router.use("/albums", albumsRouter);
+
+router.use("/albumPhotos", albumPhotosRouter);
 
 //
 router.post("/test", (req, res) => {
