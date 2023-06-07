@@ -7,7 +7,7 @@ function GalleryTile({ photo, user }) {
  console.log("=================PhotoTile photo user: ", photo, user);
  return (
   <div className="phototile">
-   <NavLink exact to={`/photos/${photo?.id}`}>
+   <NavLink exact to={`/photos/${photo?.id}/gallery`}>
     <div
     //  style={{
     //   backgroundImage: `url(${photo?.imageUrl})`,

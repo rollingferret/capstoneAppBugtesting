@@ -8,7 +8,8 @@ import PhotoDetail from "./components/PhotoDetail";
 import CommentCurrent from "./components/CommentCurrent";
 import Gallery from "./components/Gallery";
 import Albums from "./components/Albums";
-import AlbumEdit from "./components/AlbumEdit";
+import AlbumPhotoDetail from "./components/AlbumPhotoDetail";
+import GalleryPhotoDetail from "./components/GalleryPhotoDetail";
 
 function App() {
  const dispatch = useDispatch();
@@ -35,8 +36,13 @@ function App() {
      </Route>
     )}
     {isLoaded && (
-     <Route path="/photos/:photoId">
-      <PhotoDetail type="photos" />
+     <Route path="/photos/:photoId/photoStream">
+      <PhotoDetail />
+     </Route>
+    )}
+    {isLoaded && (
+     <Route path="/photos/:photoId/gallery">
+      <GalleryPhotoDetail />
      </Route>
     )}
     {isLoaded && (
@@ -46,7 +52,7 @@ function App() {
     )}
     {isLoaded && (
      <Route path="/albums/:albumId">
-      <AlbumEdit user={sessionUser} />
+      <AlbumPhotoDetail user={sessionUser} />
      </Route>
     )}
     {isLoaded && (

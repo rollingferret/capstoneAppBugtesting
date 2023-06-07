@@ -30,7 +30,7 @@ function PhotoTile({ photo, user }) {
     }}
     alt="imported by author"
    /> */}
-   <NavLink exact to={`/photos/${photo?.id}`}>
+   <NavLink exact to={`/photos/${photo?.id}/photoStream`}>
     <div
      style={{
       position: "absolute",

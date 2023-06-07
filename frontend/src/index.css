@@ -417,18 +417,6 @@ input {
   margin: 120px 120px;
 }
 
-/* ***************** */
-/*     PhotoList     */
-/*NotInAlbumPhotoTile*/
-/* ***************** */
-
-
-.PhotoList-phototile {
-  height: 110px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 /* ************** */
 /*  PhotoDetail   */
@@ -760,7 +748,7 @@ a {
 
 .albumEdit-outer-container {
   padding: 100px;
-  width: 90%;
+  width: 85%;
   margin: auto;
   display: flex;
 }
@@ -768,7 +756,8 @@ a {
 .partition1 {
   width: 40%;
   height: 70vh;
-  background-color: #FF5A5F;
+  background-color: lightpink;
+  border-radius: 9px;
 }
 
 .partition2 {
@@ -777,14 +766,17 @@ a {
 }
 
 .partition3 {
+  position: relative;
   width: 40%;
   height: 70vh;
-  background-color: darkcyan;
+  background-color: lightblue;
+  border-radius: 9px;
 }
 
 .photos-notInAlbum-container {
   width: 90%;
   height: 60vh;
+
   background-color: lightpink;
   display: flex;
   justify-content: flex-start;
@@ -797,12 +789,46 @@ a {
 .albumEdit-btn-container {
   width: 90%;
   height: 60vh;
-  background-color: beige;
+  color: rgb(38, 7, 7);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 5vh auto;
 }
 
 .photos-InAlbum-container {
   width: 90%;
   height: 60vh;
 
-  background-color: darkseagreen;
+  background-color: rgb(170, 215, 230);
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  margin: 5vh auto;
+  gap: 0.5rem;
+}
+
+.circle-check-icon-box {
+  position: absolute;
+  right: 0.1rem;
+  bottom: 0.1rem;
+  color: aquamarine;
+  z-index: 1;
+  cursor: pointer;
+
+}
+
+.album-edit-album-name {
+  position: absolute;
+  left: 0%;
+  top: -1%;
+  width: 100%;
+  text-align: center;
+  font-size: 18pt;
+  font-weight: 600;
+  color: rgb(38, 7, 7);
+  padding-top: 1rem;
 }

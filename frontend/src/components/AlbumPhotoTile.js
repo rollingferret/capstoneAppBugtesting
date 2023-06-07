@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 
-function NotInAlbumPhotoTile({ photo, user, setSelectedPhotos }) {
+function AlbumPhotoTile({ albumPhoto, user, setSelectedAlbumPhotos }) {
  const [select, setSelect] = useState(false);
 
  useEffect(() => {
   if (select) {
-   setSelectedPhotos((prev) => {
-    prev[photo.id] = photo.id;
+   setSelectedAlbumPhotos((prev) => {
+    prev[albumPhoto.id] = albumPhoto.id;
     return prev;
    });
   } else {
-   setSelectedPhotos((prev) => {
-    delete prev[photo.id];
+   setSelectedAlbumPhotos((prev) => {
+    delete prev[albumPhoto.id];
     return prev;
    });
   }
  }, [select]);
  return (
   <div
-   className="Photo-box"
+   className="photo-box"
    style={{
     position: "relative",
-    backgroundImage: `url(${photo?.imageUrl})`,
+    backgroundImage: `url(${albumPhoto?.imageUrl})`,
     width: "120px",
     height: "96px",
     backgroundSize: "cover",
@@ -41,4 +41,4 @@ function NotInAlbumPhotoTile({ photo, user, setSelectedPhotos }) {
   </div>
  );
 }
-export default NotInAlbumPhotoTile;
+export default AlbumPhotoTile;

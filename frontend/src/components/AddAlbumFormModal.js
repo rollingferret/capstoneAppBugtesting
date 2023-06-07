@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../context/Modal";
 import { ThunkAddAAlbum } from "../store/albums";
 const CATEGORY = [
+ "others",
  "worm/bug",
  "event",
  "plant",
@@ -21,19 +22,23 @@ const CATEGORY = [
  "fashion",
  "vehicle",
  "things",
- "others",
 ];
 
 function AddAlbumFormModal() {
  const dispatch = useDispatch();
  const [name, setName] = useState("");
- const [category, setCategory] = useState("");
+ const [category, setCategory] = useState(CATEGORY[0]);
  const [errors, setErrors] = useState({});
  const { closeModal } = useModal();
 
  const handleSubmit = async (e) => {
   e.preventDefault();
   setErrors({});
+
+  console.log("handleSubmit: ", {
+   name,
+   category,
+  });
 
   return dispatch(
    ThunkAddAAlbum({
@@ -45,11 +50,8 @@ function AddAlbumFormModal() {
    .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) {
-     console.log(
-      "333333333333333333333 data.errors.errors: ",
-      data.errors.errors
-     );
-     setErrors(data.errors.errors);
+     console.log("333333333333333333333 data: ", data);
+     setErrors(data.errors);
     }
    });
  };

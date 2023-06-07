@@ -3,7 +3,7 @@ import PhotoTile from "./PhotoTile";
 import GalleryTile from "./GalleryTile";
 import NotInAlbumPhotoTile from "./NotInAlbumPhotoTile";
 
-function PhotoList({ photos, type, user }) {
+function PhotoList({ photos, type, user, setSelectedPhotos }) {
  console.log("PhotoList photos: ", photos);
  if (type === "photo")
   return photos?.map((photo) => (
@@ -13,8 +13,12 @@ function PhotoList({ photos, type, user }) {
   ));
  else if (type === "photo-but-album")
   return photos?.map((photo) => (
-   <div className="PhotoList-phototile" key={photo?.id}>
-    <NotInAlbumPhotoTile photo={photo} user={user} />{" "}
+   <div key={photo?.id}>
+    <NotInAlbumPhotoTile
+     photo={photo}
+     user={user}
+     setSelectedPhotos={setSelectedPhotos}
+    />{" "}
    </div>
   ));
  else

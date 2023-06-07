@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
-import { ThunkLoadAllCurrentPhotos } from "../store/photos";
+import { ThunkLoadAllPhotos } from "../store/photos";
 import { ThunkLoadAllCommentByPhoto } from "../store/comments";
 import ImageSlider from "./ImageSlider";
 
-function PhotoDetail() {
+function GalleryPhotoDetail() {
  const [photo_id, setPhoto_id] = useState();
  const params = useParams();
  const dispatch = useDispatch();
  const { photoId } = params;
 
- console.log("PhotoDetail PhotoId: ", photoId);
+ console.log("GalleryPhotoDetail PhotoId: ", photoId);
  const thePhotoId = parseInt(photoId);
 
  useEffect(() => {
@@ -19,7 +19,7 @@ function PhotoDetail() {
  }, [thePhotoId]);
 
  //setPhoto_id(thePhotoId);
- const return_photos = useSelector((state) => state.photos.allcurrent);
+ const return_photos = useSelector((state) => state.photos.allPhotos);
  const photos = Object.values(return_photos);
  let photo;
  if (photo_id) photo = return_photos[photo_id];
@@ -32,7 +32,7 @@ function PhotoDetail() {
  console.log("PhotoDetail comments: ", comments);
 
  useEffect(() => {
-  dispatch(ThunkLoadAllCurrentPhotos());
+  dispatch(ThunkLoadAllPhotos());
  }, [dispatch]);
 
  useEffect(() => {
@@ -60,9 +60,9 @@ function PhotoDetail() {
       top: "10px",
       fontSize: "14pt",
      }}
-     to="/photos/current"
+     to="/photos/gallery"
     >
-     <i className="fa-solid fa-arrow-left fa-sm"></i> Back to photostream
+     <i className="fa-solid fa-arrow-left fa-sm"></i> Back to Gallery
     </NavLink>
     {photos !== undefined && index !== -1 && (
      <ImageSlider photos={photos} index={index} setPhoto_id={setPhoto_id} />
@@ -92,4 +92,4 @@ function PhotoDetail() {
  );
  //else return <div>Loading...</div>;
 }
-export default PhotoDetail;
+export default GalleryPhotoDetail;

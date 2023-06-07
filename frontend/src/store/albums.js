@@ -37,7 +37,7 @@ export const ThunkLoadAllCurrentAlbums = () => async (dispatch) => {
  console.log(response);
  if (response.ok) {
   const albums = await response.json();
-  console.log("albums: ", albums);
+  console.log("***aaa*** albums: ", albums);
   dispatch(loadAllCurrentAlbums(albums));
   return albums;
  }

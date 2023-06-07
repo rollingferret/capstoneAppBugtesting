@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 
-const ImageSlider = ({ thePhotos, index, setPhoto_id }) => {
- const [photos, setPhotos] = useState(thePhotos);
+const ImageSlider = ({ photos, index, setPhoto_id }) => {
  const [currentIndex, setCurrentIndex] = useState(index);
  console.log("photos, index", photos, index);
 
  let photo;
  useEffect(() => {
-  setPhotos(thePhotos);
   setCurrentIndex(index);
- }, [thePhotos, index]);
-
+ }, [index]);
  if (photos !== undefined && currentIndex !== undefined)
   photo = photos[currentIndex];
 
