@@ -6,40 +6,38 @@ export default function BottomBanner() {
   <>
    <div className="bottom-banner">
     <div className="bottom-banner-row1">
-     <a href="https://www.flickr.com/about">About</a>
-
-     <a href="https://www.flickr.com/jobs">Jobs</a>
-
-     <a href="https://flickrhelp.com/">help</a>
-
-     <a href="https://www.flickr.com/abuse">Report abuse</a>
-    </div>
-    <div className="bottom-banner-row2">
-     {/* <div className="bottom-banner-item">
-      <NavLink to="https://www.flickr.com/help/privacy">Privicy</NavLink>
-      <NavLink tp="https://www.flickr.com/help/terms">Terms</NavLink>
-     </div> */}
      <div className="bottom-banner-item">
-      Imagecfr Connecting people through photography
+      <strong>Imagecfr</strong> Connecting people through photography
      </div>
      <div className="bottom-banner-item">
-      <a href="https://www.facebook.com/flickr">
+      <a target="_blank" href="https://wellfound.com/u/helen-koo-3">
        <img
         className="social-media-icon"
-        src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/social-facebook-icon.png"
+        src="https://e7.pngegg.com/pngimages/31/978/png-clipart-angellist-angel-investor-startup-company-logo-others-company-hand-thumbnail.png"
        />
       </a>
-      <a href="https://twitter.com/flickr">
+      <a target="_blank" href="https://github.com/ChunyiKoo/ChunyiKoo">
        <img
         className="social-media-icon"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXrOhy5YCzohXdSvrEnqfX1TY_VmnU3MO49A&usqp=CAU"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUipP9pYxwb1Bs5PQuJqraOH4CXMwdZ-30vA&usqp=CAU"
        />
       </a>
-      <a href="https://www.instagram.com/flickr/">
+      <a
+       target="_blank"
+       href="https://www.linkedin.com/in/chunyi-koo-70780025a/?trk=public-profile-join-page"
+      >
        <img
         className="social-media-icon"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSyT_Qvc17pA5dhEOc9TjijH5xqnZkyDtWqA&usqp=CAU"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgcJ7WA60a4vkJl7f-ZtWhdOa2c3p2rKkLNQ&usqp=CAU"
        />
+      </a>
+     </div>
+    </div>
+    <div className="bottom-banner-row2">
+     <div className="bottom-banner-copyright">
+      Copyright &#169; 2020 by{" "}
+      <a target="_blank" href="https://chunyikoo.github.io/">
+       <strong>Helen Koo</strong>
       </a>
      </div>
     </div>

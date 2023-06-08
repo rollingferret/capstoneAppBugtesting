@@ -60,6 +60,7 @@ function App() {
       <CommentCurrent />
      </Route>
     )}
+    <Route>Page Not Found</Route>
    </Switch>
   </>
  );

@@ -6,6 +6,7 @@ import { ThunkLoadAllPhotos } from "../store/photos";
 import AddEditCommentFormModal from "./AddEditCommentFormModal";
 import OpenModalButton from "./OpenModalButton";
 import DeleteCommentFormModal from "./DeleteCommentFormModal";
+import BottomBanner from "./BottomBanner";
 
 function CommentCurrent() {
  const dispatch = useDispatch();
@@ -109,6 +110,7 @@ function CommentCurrent() {
      </div>
     </div>
    </div>
+   <BottomBanner />
   </>
  );
 }
