@@ -7,36 +7,40 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = {
  async up(queryInterface, Sequelize) {
-  await queryInterface.createTable("AlbumPhotos", {
-   id: {
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
-    type: Sequelize.INTEGER,
-   },
-   photoId: {
-    type: Sequelize.INTEGER,
-    references: {
-     model: "Photos",
+  await queryInterface.createTable(
+   "AlbumPhotos",
+   {
+    id: {
+     allowNull: false,
+     autoIncrement: true,
+     primaryKey: true,
+     type: Sequelize.INTEGER,
+    },
+    photoId: {
+     type: Sequelize.INTEGER,
+     references: {
+      model: "Photos",
+     },
+    },
+    albumId: {
+     type: Sequelize.INTEGER,
+     references: {
+      model: "Albums",
+     },
+    },
+    createdAt: {
+     allowNull: false,
+     type: Sequelize.DATE,
+     defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+    },
+    updatedAt: {
+     allowNull: false,
+     type: Sequelize.DATE,
+     defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     },
    },
-   albumId: {
-    type: Sequelize.INTEGER,
-    references: {
-     model: "Albums",
-    },
-   },
-   createdAt: {
-    allowNull: false,
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-   },
-   updatedAt: {
-    allowNull: false,
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-   },
-  });
+   options
+  );
 
   // Add a unique constraint to make photoId and albumId a unique pair
   await queryInterface.addConstraint("AlbumPhotos", {
@@ -46,6 +50,7 @@ module.exports = {
   });
  },
  async down(queryInterface, Sequelize) {
-  await queryInterface.dropTable("AlbumPhotos");
+  options.tableName = "AlbumPhotos";
+  await queryInterface.dropTable(options);
  },
 };
