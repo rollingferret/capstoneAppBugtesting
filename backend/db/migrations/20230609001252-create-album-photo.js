@@ -43,7 +43,7 @@ module.exports = {
   );
 
 //   Add a unique constraint to make photoId and albumId a unique pair
-  await queryInterface.addConstraint("process.env.SCHEMA.AlbumPhotos", {
+  await queryInterface.addConstraint(`${process.env.SCHEMA}.AlbumPhotos`, {
    fields: ["photoId", "albumId"],
    type: "unique",
    name: "unique_photo_album_pair",

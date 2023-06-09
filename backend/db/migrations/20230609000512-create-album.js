@@ -44,7 +44,7 @@ module.exports = {
    options
   );
   // Add a unique constraint on combination of name and ownerId
-  await queryInterface.addConstraint("process.env.SCHEMA.Albums", {
+  await queryInterface.addConstraint(`${process.env.SCHEMA}.Albums`, {
    fields: ["name", "ownerId"],
    type: "unique",
    name: "unique_name_ownerId_constraint",
