@@ -44,11 +44,11 @@ module.exports = {
    options
   );
   // Add a unique constraint on combination of name and ownerId
-//   await queryInterface.addConstraint("Albums", {
-//    fields: ["name", "ownerId"],
-//    type: "unique",
-//    name: "unique_name_ownerId_constraint",
-//   });
+  await queryInterface.addConstraint("Albums", {
+   fields: ["name", "ownerId"],
+   type: "unique",
+   name: "unique_name_ownerId_constraint",
+  });
  },
  async down(queryInterface, Sequelize) {
   options.tableName = "Albums";
