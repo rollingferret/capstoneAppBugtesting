@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "production") {
 module.exports = {
  async up(queryInterface, Sequelize) {
   await queryInterface.createTable(
-   "Albums",
+   "AlbumPhotos",
    {
     id: {
      allowNull: false,
@@ -16,18 +16,16 @@ module.exports = {
      primaryKey: true,
      type: Sequelize.INTEGER,
     },
-    name: {
-     allowNull: false,
-     type: Sequelize.STRING(30),
-    },
-    category: {
-     allowNull: false,
-     type: Sequelize.STRING(30),
-    },
-    ownerId: {
+    photoId: {
      type: Sequelize.INTEGER,
      references: {
-      model: "Users",
+      model: "Photos",
+     },
+    },
+    albumId: {
+     type: Sequelize.INTEGER,
+     references: {
+      model: "Albums",
      },
     },
     createdAt: {
@@ -43,15 +41,16 @@ module.exports = {
    },
    options
   );
-  // Add a unique constraint on combination of name and ownerId
-//   await queryInterface.addConstraint("Albums", {
-//    fields: ["name", "ownerId"],
-//    type: "unique",
-//    name: "unique_name_ownerId_constraint",
-//   });
+
+  // Add a unique constraint to make photoId and albumId a unique pair
+  await queryInterface.addConstraint("AlbumPhotos", {
+   fields: ["photoId", "albumId"],
+   type: "unique",
+   name: "unique_photo_album_pair",
+  });
  },
  async down(queryInterface, Sequelize) {
-  options.tableName = "Albums";
+  options.tableName = "AlbumPhotos";
   await queryInterface.dropTable(options);
  },
 };
