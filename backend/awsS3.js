@@ -31,18 +31,22 @@ const singleFileDelete = async (key) => {
 // backend/awsS3.js
 
 const singleFileUpload = async ({ file, public = false }) => {
+ console.log('inside singleFileUpload-----------------------------------')
  const { originalname, buffer } = file;
  const path = require("path");
 
  // Set the name of the file in your S3 bucket to the date in ms plus the
  // extension name.
  const Key = new Date().getTime().toString() + path.extname(originalname);
+ console.log(Key, 'Key-----------------------------------')
  const uploadParams = {
   Bucket: NAME_OF_BUCKET,
   Key: public ? `public/${Key}` : Key,
   Body: buffer,
  };
+ console.log(uploadParams, 'uploadParams-----------------------------------')
  const result = await s3.upload(uploadParams).promise();
+ console.log(result, 'result-----------------------------------')
 
  // Return the link if public. If private, return the name of the file in your
  // S3 bucket as the key in your database for subsequent retrieval.
