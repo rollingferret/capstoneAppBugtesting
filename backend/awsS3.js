@@ -31,27 +31,30 @@ const singleFileDelete = async (key) => {
 // backend/awsS3.js
 
 const singleFileUpload = async ({ file, public = false }) => {
- console.log('inside singleFileUpload-----------------------------------')
- const { originalname, buffer } = file;
- const path = require("path");
+  try {
+    console.log('inside singleFileUpload-----------------------------------')
+    const { originalname, buffer } = file;
+    const path = require("path");
 
- // Set the name of the file in your S3 bucket to the date in ms plus the
- // extension name.
- const Key = new Date().getTime().toString() + path.extname(originalname);
- console.log(Key, 'Key-----------------------------------')
- const uploadParams = {
-  Bucket: NAME_OF_BUCKET,
-  Key: public ? `public/${Key}` : Key,
-  Body: buffer,
- };
- console.log(uploadParams, 'uploadParams-----------------------------------')
- console.log(await s3.upload(uploadParams).promise())
- const result = await s3.upload(uploadParams).promise();
- console.log(result, 'result-----------------------------------')
+    // Set the name of the file in your S3 bucket to the date in ms plus the extension name.
+    const Key = new Date().getTime().toString() + path.extname(originalname);
+    console.log(Key, 'Key-----------------------------------')
+    const uploadParams = {
+      Bucket: NAME_OF_BUCKET,
+      Key: public ? `public/${Key}` : Key,
+      Body: buffer,
+    };
+    console.log(uploadParams, 'uploadParams-----------------------------------')
+    const result = await s3.upload(uploadParams).promise();
+    console.log(result, 'result-----------------------------------')
 
- // Return the link if public. If private, return the name of the file in your
- // S3 bucket as the key in your database for subsequent retrieval.
- return public ? result.Location : result.Key;
+    // Return the link if public. If private, return the name of the file in your
+    // S3 bucket as the key in your database for subsequent retrieval.
+    return public ? result.Location : result.Key;
+  } catch (error) {
+    console.error("Error occurred during file upload:", error);
+    throw error;
+  }
 };
 // backend/awsS3.js
 
