@@ -82,10 +82,14 @@ router.post(
  validateAddPhoto,
  async (req, res, next) => {
   const currentUser = req.user;
+  console.log(currentUser, 'currentUser-------------------------')
   let ownerId = parseInt(currentUser.id);
+  console.log(ownerId, 'ownerId-------------------------')
   //console.log("ownerId: ", ownerId);
   let key = await singleFileUpload({ file: req.file });
+  console.log(key, 'key-------------------------'')
   let { title } = req.body;
+  console.log(title, 'title-------------------------')
 
   let newPhoto = await Photo.create({
    title,
@@ -93,11 +97,15 @@ router.post(
    ownerId,
   });
 
+  console.log(newPhoto, 'newPhoto-------------------------')
+
   //console.log("newPhoto: ", newPhoto);
   const imageUrl = retrievePrivateFile(newPhoto.key);
+  console.log(imageUrl, 'imageUrl-------------------------')
   //const { id, updatedAt, createdAt } = newPhoto;
   //const photo = { id, title, key, ownerId, imageUrl, updatedAt, createdAt };
   const photo = { ...newPhoto.toJSON(), imageUrl };
+  console.log(photo, 'photo-------------------------')
   res.status(201);
   return res.json(photo);
  }
