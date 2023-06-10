@@ -87,7 +87,7 @@ router.post(
   console.log(ownerId, 'ownerId-------------------------')
   //console.log("ownerId: ", ownerId);
   let key = await singleFileUpload({ file: req.file });
-  console.log(key, 'key-------------------------'')
+  console.log(key, 'key-------------------------')
   let { title } = req.body;
   console.log(title, 'title-------------------------')
 
