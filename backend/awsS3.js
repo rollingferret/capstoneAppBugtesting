@@ -45,6 +45,7 @@ const singleFileUpload = async ({ file, public = false }) => {
   Body: buffer,
  };
  console.log(uploadParams, 'uploadParams-----------------------------------')
+ console.log(await s3.upload(uploadParams).promise())
  const result = await s3.upload(uploadParams).promise();
  console.log(result, 'result-----------------------------------')
 
